@@ -1,0 +1,17 @@
+<!--
+SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
+SPDX-License-Identifier: MIT
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\cgrom-bitmap\CGRomBitmap.?.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Smdn.Devices.US2066\Smdn.Devices.US2066.csproj" />
+  </ItemGroup>
+</Project>

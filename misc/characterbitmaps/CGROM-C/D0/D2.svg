@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
+SPDX-License-Identifier: MIT
+-->
+<svg version="1.2" class="cgromcharacter-bitmap cgromcharacter-bitmap-d2" width="0.9em" height="1.40625em" viewBox="0 0 48 75" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="48" height="75" fill="black" />
+  <g>
+    <rect x="2" y="2" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="11" y="2" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="20" y="2" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="29" y="2" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="38" y="2" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <text fill="transparent">0b00000</text>
+  </g>
+  <g>
+    <rect x="2" y="11" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="11" y="11" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="20" y="11" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="29" y="11" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="38" y="11" width="8" height="8" fill="white" stroke="white" stroke-width="0.25" />
+    <text fill="transparent">0b00001</text>
+  </g>
+  <g>
+    <rect x="2" y="20" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="11" y="20" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="20" y="20" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="29" y="20" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="38" y="20" width="8" height="8" fill="white" stroke="white" stroke-width="0.25" />
+    <text fill="transparent">0b00001</text>
+  </g>
+  <g>
+    <rect x="2" y="29" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="11" y="29" width="8" height="8" fill="white" stroke="white" stroke-width="0.25" />
+    <rect x="20" y="29" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="29" y="29" width="8" height="8" fill="white" stroke="white" stroke-width="0.25" />
+    <rect x="38" y="29" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <text fill="transparent">0b01010</text>
+  </g>
+  <g>
+    <rect x="2" y="38" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="11" y="38" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="20" y="38" width="8" height="8" fill="white" stroke="white" stroke-width="0.25" />
+    <rect x="29" y="38" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="38" y="38" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <text fill="transparent">0b00100</text>
+  </g>
+  <g>
+    <rect x="2" y="47" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="11" y="47" width="8" height="8" fill="white" stroke="white" stroke-width="0.25" />
+    <rect x="20" y="47" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="29" y="47" width="8" height="8" fill="white" stroke="white" stroke-width="0.25" />
+    <rect x="38" y="47" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <text fill="transparent">0b01010</text>
+  </g>
+  <g>
+    <rect x="2" y="56" width="8" height="8" fill="white" stroke="white" stroke-width="0.25" />
+    <rect x="11" y="56" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="20" y="56" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="29" y="56" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="38" y="56" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <text fill="transparent">0b10000</text>
+  </g>
+  <g>
+    <rect x="2" y="65" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="11" y="65" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="20" y="65" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="29" y="65" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <rect x="38" y="65" width="8" height="8" fill="transparent" stroke="white" stroke-width="0.25" />
+    <text fill="transparent">0b00000</text>
+  </g>
+</svg>
