@@ -26,7 +26,7 @@ As an example, the `string` `"ÄÁΩ⏫￫"` will be displayed like ![Ä](./misc
 
 For more information about character mapping, see [this document](./doc/characters/).
 
-(⚠The [character mapping of CGROM-B](./doc/characters/CGROM-B.md) and some other characters, especially alphabets with diacritical marks, are incomplete. Contributions are welcome!)
+(⚠The [character mapping of CGROM-B](./doc/characters/CGROM-B.md) and some other characters, especially alphabets with diacritical marks, are incomplete. Contributions are welcome! See [issue #2](https://github.com/smdn/Smdn.Devices.US2066/issues/2))
 
 ### Japanese and Russian conversion
 `Smdn.Devices.US2066` also supports Japanese full-width Hiragana/Katakana to half-width Katakana conversion(全角かな/全角カナ→半角カナ変換), Russian lower case to upper case conversion.
