@@ -1,0 +1,13 @@
+<!--
+SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
+SPDX-License-Identifier: MIT
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Smdn.Devices.MCP2221.GpioAdapter" Version="[0.9.*,1.0.0)" />
+  </ItemGroup>
+</Project>
