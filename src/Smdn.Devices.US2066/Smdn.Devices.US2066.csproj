@@ -1,0 +1,25 @@
+<!--
+SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
+SPDX-License-Identifier: MIT
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <VersionPrefix>0.9</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
+  </PropertyGroup>
+
+  <PropertyGroup Label="metadata">
+    <Description>
+<![CDATA[Smdn.Devices.US2066 is a .NET library for OLED character display modules which has US2066 controller chip, based on System.Device.Gpio and Iot.Device.Bindings.
+This library supports OLED display module SO1602A, SO2002A, and other display modules can also be worked by deriving from the predefined base class.
+]]>
+    </Description>
+    <PackageTags></PackageTags>
+    <PackageTags>System.Device.Gpio,Iot.Device.Bindings,OLED display,US2066,SO1602A,SO2002A</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Device.Gpio" Version="1.4.0" />
+    <PackageReference Include="Iot.Device.Bindings" Version="1.4.0" />
+  </ItemGroup>
+</Project>

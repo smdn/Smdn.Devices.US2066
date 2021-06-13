@@ -1,0 +1,33 @@
+<!--
+SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
+SPDX-License-Identifier: MIT
+-->
+<Project>
+  <PropertyGroup>
+    <!-- <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks> !! Iot.Device.Bindings 1.4.0 is not compatible with netstandard2.1 -->
+    <TargetFrameworks>net5.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <!--
+  https://github.com/dotnet/msbuild/pull/6285
+  <ItemGroup>
+    <AssemblyAttribute Include="CLSCompliantAttribute">
+      <_Parameter1>True</_Parameter1>
+      <_Parameter1_TypeName>System.Boolean</_Parameter1_TypeName>
+    </AssemblyAttribute>
+  </ItemGroup>
+  -->
+
+  <PropertyGroup Label="metadata">
+    <Authors>smdn</Authors>
+    <CopyrightYear>2021</CopyrightYear>
+
+    <!-- NuGet -->
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/smdn/Smdn.Devices.MCP2221</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/smdn/Smdn.Devices.MCP2221</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+</Project>
