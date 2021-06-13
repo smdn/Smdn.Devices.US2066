@@ -1,9 +1,8 @@
 ![S](./misc/characterbitmaps//CGROM-C/50/53.svg)![m](./misc/characterbitmaps//CGROM-C/60/6D.svg)![d](./misc/characterbitmaps//CGROM-C/60/64.svg)![n](./misc/characterbitmaps//CGROM-C/60/6E.svg)![.](./misc/characterbitmaps//CGROM-C/20/2E.svg)![D](./misc/characterbitmaps//CGROM-C/40/44.svg)![e](./misc/characterbitmaps//CGROM-C/60/65.svg)![v](./misc/characterbitmaps//CGROM-C/70/76.svg)![i](./misc/characterbitmaps//CGROM-C/60/69.svg)![c](./misc/characterbitmaps//CGROM-C/60/63.svg)![e](./misc/characterbitmaps//CGROM-C/60/65.svg)![s](./misc/characterbitmaps//CGROM-C/70/73.svg)![.](./misc/characterbitmaps//CGROM-C/20/2E.svg)![U](./misc/characterbitmaps//CGROM-C/50/55.svg)![S](./misc/characterbitmaps//CGROM-C/50/53.svg)![2](./misc/characterbitmaps//CGROM-C/30/32.svg)![0](./misc/characterbitmaps//CGROM-C/30/30.svg)![6](./misc/characterbitmaps//CGROM-C/30/36.svg)![6](./misc/characterbitmaps//CGROM-C/30/36.svg)
-<!--
+
 [![GitHub license](https://img.shields.io/github/license/smdn/Smdn.Devices.US2066)](https://github.com/smdn/Smdn.Devices.US2066/blob/main/LICENSE.txt)
 [![GitHub issues](https://img.shields.io/github/issues/smdn/Smdn.Devices.US2066)](https://github.com/smdn/Smdn.Devices.US2066/issues)
 [![NuGet Smdn.Devices.US2066](https://img.shields.io/nuget/v/Smdn.Devices.US2066.svg)](https://www.nuget.org/packages/Smdn.Devices.US2066/)
--->
 
 # Smdn.Devices.US2066
 [Smdn.Devices.US2066](src/Smdn.Devices.US2066/) is a .NET library for controlling [WiseChip US2066](https://www.wisechip.com.tw/) OLED Driver with Controller.
