@@ -1,4 +1,4 @@
-# `contrast`
+# `fadeout`
 to be documented
 
 ## Expected behavior
