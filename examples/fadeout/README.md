@@ -2,5 +2,4 @@
 to be documented
 
 ## Expected behavior
-to be added
-<!-- video link -->
+[![Expected behavior video](https://img.youtube.com/vi/wHARO3xLFpE/0.jpg)](https://www.youtube.com/watch?v=wHARO3xLFpE)
