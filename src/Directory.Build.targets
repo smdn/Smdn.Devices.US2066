@@ -12,6 +12,7 @@ SPDX-License-Identifier: MIT
     <!-- AssemblyInfo -->
     <AssemblyTitle Condition=" '$(AssemblyTitle)' == '' ">$(Title)</AssemblyTitle>
     <AssemblyTitle Condition=" '$(AssemblyTitle)' == '' ">$(AssemblyName)</AssemblyTitle>
+    <AssemblyVersion Condition=" '$(AssemblyVersion)' == '' ">$(VersionPrefix)</AssemblyVersion>
     <AssemblyVersion Condition=" '$(AssemblyVersion)' == '' ">$(Version)</AssemblyVersion>
     <InformationalVersion Condition=" '$(InformationalVersion)' == '' ">$(VersionPrefix)$(VersionSuffix) ($(TargetFramework))</InformationalVersion>
     <Product Condition=" '$(Product)' == '' ">$(AssemblyName)-$(InformationalVersion)</Product>

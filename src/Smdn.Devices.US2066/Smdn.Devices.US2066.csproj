@@ -14,7 +14,6 @@ SPDX-License-Identifier: MIT
 This library supports OLED display module SO1602A, SO2002A, and other display modules can also be worked by deriving from the predefined base class.
 ]]>
     </Description>
-    <PackageTags></PackageTags>
     <PackageTags>System.Device.Gpio,Iot.Device.Bindings,OLED display,US2066,SO1602A,SO2002A</PackageTags>
   </PropertyGroup>
 
