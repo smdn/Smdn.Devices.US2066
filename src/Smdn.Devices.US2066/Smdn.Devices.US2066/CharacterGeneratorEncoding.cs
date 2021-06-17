@@ -104,7 +104,7 @@ namespace Smdn.Devices.US2066 {
       var indexOfChars = 0;
       var byteCount = 0;
 
-      for (;;) {
+      for (; ; ) {
         if (chars.IsEmpty)
           return byteCount;
 
@@ -161,7 +161,7 @@ namespace Smdn.Devices.US2066 {
           byteCount += 1; // 0x20 SPACE
         }
 
-COUNTED:
+      COUNTED:
         chars = chars.Slice(lengthOfCountedChars);
         indexOfChars += lengthOfCountedChars;
       }
@@ -242,7 +242,7 @@ COUNTED:
           bytes[0] = 0x20; // SPACE
         }
 
-CONVERTED:
+      CONVERTED:
         chars = chars.Slice(lengthOfConvertedChars);
         indexOfChars += lengthOfConvertedChars;
 
