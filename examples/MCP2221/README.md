@@ -16,14 +16,14 @@ Required devices and parts are as follows:
   - Windows, Linux, or etc., where [Smdn.Devices.MCP2221.GpioAdapter](https://github.com/smdn/Smdn.Devices.MCP2221) can work.
 - USB breakout board or breakout cable
 - MCP2221/MCP2221A and
-  - 0.22μF capaciter × 1
-  - 0.1μF capaciter × 1
-  - 10kΩ register × 1
+  - 0.22μF capacitor × 1
+  - 0.1μF capacitor × 1
+  - 10kΩ resistor × 1
 - 3.3V voltage regulator and
   - external capacitors which required by the regulator
 - SO1602A OLED display module and
-  - 0.1μF capaciter × 1
-  - 4.7kΩ register × 2
+  - 0.1μF capacitor × 1
+  - 4.7kΩ resistor × 2
   - 3P slide switch × 1 (Optional. This switch is used to switching I<sup>2</sup>C address of SO1602A.)
 
 秋月電子通商で購入する場合は、以下で必要なパーツを揃えることができます。　Required parts can be purchased from the following links (Japanese supplier).

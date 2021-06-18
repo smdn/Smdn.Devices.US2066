@@ -11,8 +11,8 @@ Required devices and parts are as follows:
 - Raspberry Pi
   - The model which .NET and `System.Device.Gpio` can run. Refer [this document](https://docs.microsoft.com/en-us/dotnet/iot/intro) for detail.
 - SO1602A OLED display module and
-  - 0.1μF capaciter × 1
-  - 4.7kΩ register × 2
+  - 0.1μF capacitor × 1
+  - 4.7kΩ resistor × 2
   - 3P slide switch × 1 (Optional. This switch is used to switching I<sup>2</sup>C address of SO1602A.)
 
 
