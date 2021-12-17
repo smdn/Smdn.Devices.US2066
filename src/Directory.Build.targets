@@ -20,4 +20,14 @@ SPDX-License-Identifier: MIT
     <Company>smdn.jp (https://smdn.jp)</Company>
     <Copyright Condition=" '$(Copyright)' == '' ">Copyright © $(CopyrightYear) $(Authors)</Copyright>
   </PropertyGroup>
+
+  <Target Name="GetAssemblyAttributeCLSCompliant" BeforeTargets="GetAssemblyAttributes">
+    <ItemGroup Label="assembly attributes">
+      <!-- https://github.com/dotnet/msbuild/pull/6285 -->
+      <AssemblyAttribute Include="System.CLSCompliantAttribute" Condition=" '$(AssemblyCLSCompliant)' != '' ">
+        <_Parameter1>$(AssemblyCLSCompliant)</_Parameter1>
+        <_Parameter1_TypeName>System.Boolean</_Parameter1_TypeName>
+      </AssemblyAttribute>
+    </ItemGroup>
+  </Target>
 </Project>
