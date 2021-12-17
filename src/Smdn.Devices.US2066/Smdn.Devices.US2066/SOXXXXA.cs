@@ -1,8 +1,5 @@
 // SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
 // SPDX-License-Identifier: MIT
-
-using System;
-
 namespace Smdn.Devices.US2066;
 
 public abstract class SOXXXXA : US2066DisplayModuleBase {
@@ -12,8 +9,8 @@ public abstract class SOXXXXA : US2066DisplayModuleBase {
   protected override DisplayLineNumber DisplayLineNumber => DisplayLineNumber.Lines4; // Even SOXX02A (2-lines), it is defined as 4-lines (?)
   protected override DisplayDotFormat DisplayDotFormat => DisplayDotFormat.Dots5x8;
 
-  private protected SOXXXXA(US2066 _oledInterface)
-    : base(_oledInterface)
+  private protected SOXXXXA(US2066 oledInterface)
+    : base(oledInterface)
   {
   }
 }

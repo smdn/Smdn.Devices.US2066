@@ -24,7 +24,9 @@ public abstract class CharacterGeneratorEncoding : Encoding {
   internal CGRom CGRom { get; }
   private ICGRam cgram = null;
 
+#pragma warning disable SA1316 // Tuple element names should use correct casing
   private readonly (char ch, byte by)[] characterMap;
+#pragma warning restore SA1316
 
   private protected CharacterGeneratorEncoding(
     string defaultReplacementString = CharacterGeneratorEncoderFallback.DefaultReplacementString,
@@ -78,12 +80,12 @@ public abstract class CharacterGeneratorEncoding : Encoding {
 
   public IEnumerable<Rune> GetRunesForByte(byte byt)
   {
-    var mapEntry = characterMap.First(entry => entry.by == byt);
+    var (ch, by) = characterMap.First(entry => entry.by == byt);
 
-    yield return new Rune(mapEntry.ch);
+    yield return new Rune(ch);
 
-    foreach (var collation in CGRomCharacters.CollationMap.Where(entry => entry.to[0] == mapEntry.ch)) {
-      yield return new Rune(collation.from);
+    foreach (var (from, to) in CGRomCharacters.CollationMap.Where(entry => entry.to[0] == ch)) {
+      yield return new Rune(from);
     }
   }
 
@@ -111,7 +113,7 @@ public abstract class CharacterGeneratorEncoding : Encoding {
 
       var lengthOfCountedChars = 0;
       var (rune, isRune) =
-        2 <= chars.Length && Char.IsSurrogatePair(chars[0], chars[1])
+        2 <= chars.Length && char.IsSurrogatePair(chars[0], chars[1])
           ? (rune: new Rune(chars[0], chars[1]), isRune: true)
           : char.IsSurrogate(chars[0])
             ? (rune: default(Rune), isRune: false)
@@ -189,7 +191,7 @@ public abstract class CharacterGeneratorEncoding : Encoding {
       var lengthOfConvertedChars = 0;
       var lengthOfConvertedBytes = 0;
       var (rune, isRune) =
-        2 <= chars.Length && Char.IsSurrogatePair(chars[0], chars[1])
+        2 <= chars.Length && char.IsSurrogatePair(chars[0], chars[1])
           ? (rune: new Rune(chars[0], chars[1]), isRune: true)
           : char.IsSurrogate(chars[0])
             ? (rune: default(Rune), isRune: false)

@@ -8,15 +8,15 @@ namespace Smdn.Devices.US2066;
 
 public class SO2002A : SOXXXXA {
   public static SO2002A Create(int deviceAddress, int busId = 1)
-    => new SO2002A(US2066.Create(deviceAddress: deviceAddress, busId: busId));
+    => new(US2066.Create(deviceAddress: deviceAddress, busId: busId));
 
   [CLSCompliant(false)]
   public static SO2002A Create(I2cConnectionSettings connectionSettings)
-    => new SO2002A(US2066.Create(connectionSettings: connectionSettings ?? throw new ArgumentNullException(nameof(connectionSettings))));
+    => new(US2066.Create(connectionSettings: connectionSettings ?? throw new ArgumentNullException(nameof(connectionSettings))));
 
   [CLSCompliant(false)]
   public static SO2002A Create(I2cDevice i2cDevice)
-    => new SO2002A(US2066.Create(i2cDevice ?? throw new ArgumentNullException(nameof(i2cDevice))));
+    => new(US2066.Create(i2cDevice ?? throw new ArgumentNullException(nameof(i2cDevice))));
 
   /*
    * instance members

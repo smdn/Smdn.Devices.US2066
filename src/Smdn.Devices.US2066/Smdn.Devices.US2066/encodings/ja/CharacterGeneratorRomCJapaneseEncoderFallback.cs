@@ -1,19 +1,18 @@
 // SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
 // SPDX-License-Identifier: MIT
 
-using System;
 using System.Text;
 
-namespace Smdn.Devices.US2066 {
-  public class CharacterGeneratorRomCJapaneseEncoderFallback : CharacterGeneratorEncoderCollationFallback {
-    public CharacterGeneratorRomCJapaneseEncoderFallback(
-      string defaultReplacementString = CharacterGeneratorEncoderFallback.DefaultReplacementString
-    )
-      : base(defaultReplacementString: defaultReplacementString)
-    {
-    }
+namespace Smdn.Devices.US2066;
 
-    public override EncoderFallbackBuffer CreateFallbackBuffer()
-      => new CharacterGeneratorRomCJapaneseEncoderFallbackBuffer(this);
+public class CharacterGeneratorRomCJapaneseEncoderFallback : CharacterGeneratorEncoderCollationFallback {
+  public CharacterGeneratorRomCJapaneseEncoderFallback(
+    string defaultReplacementString = CharacterGeneratorEncoderFallback.DefaultReplacementString
+  )
+    : base(defaultReplacementString: defaultReplacementString)
+  {
   }
+
+  public override EncoderFallbackBuffer CreateFallbackBuffer()
+    => new CharacterGeneratorRomCJapaneseEncoderFallbackBuffer(this);
 }

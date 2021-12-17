@@ -22,18 +22,18 @@ public abstract class US2066DisplayModuleBase : ICharacterLcd {
     _ => throw new NotSupportedException($"unsupported display line number (DisplayLineNumber)"),
   };
 
-  private US2066 _oledInterface;
-  private US2066 OLEDInterface => _oledInterface ?? throw new ObjectDisposedException(GetType().FullName);
+  private US2066 oledInterface;
+  private US2066 OLEDInterface => oledInterface ?? throw new ObjectDisposedException(GetType().FullName);
 
   [CLSCompliant(false)]
   public US2066 Controller => OLEDInterface;
 
   [CLSCompliant(false)]
-  protected US2066DisplayModuleBase(US2066 _oledInterface)
+  protected US2066DisplayModuleBase(US2066 oledInterface)
   {
-    this._oledInterface = _oledInterface;
+    this.oledInterface = oledInterface;
 
-    this._oledInterface.Initialize(
+    this.oledInterface.Initialize(
       numberOfLines: DisplayLineNumber,
       dotFormat: DisplayDotFormat
     );
@@ -41,8 +41,17 @@ public abstract class US2066DisplayModuleBase : ICharacterLcd {
 
   public void Dispose()
   {
-    _oledInterface?.Dispose();
-    _oledInterface = null;
+    Dispose(true);
+    GC.SuppressFinalize(this);
+  }
+
+  protected virtual void Dispose(bool disposing)
+  {
+    if (!disposing)
+      return;
+
+    oledInterface?.Dispose();
+    oledInterface = null;
   }
 
   public int Address => OLEDInterface.Address;
@@ -130,20 +139,19 @@ public abstract class US2066DisplayModuleBase : ICharacterLcd {
   public void CreateCustomCharacter(int location, ReadOnlySpan<byte> characterMap)
     => CreateCustomCharacter((CGRamCharacter)location, default(Rune), characterMap);
 
-  /// <returns>Returns alternative <see cref="System.Char"><c>char</c></see> value for registered character.</returns>
+  /// <returns>Returns alternative <see cref="char"><c>char</c></see> value for registered character.</returns>
   public char CreateCustomCharacter(CGRamCharacter character, ReadOnlySpan<byte> characterData)
-    => OLEDInterface.RegisterCGRamCharacter(character, default(Rune), characterData);
+    => OLEDInterface.RegisterCGRamCharacter(character, default, characterData);
 
-  /// <returns>Returns alternative <see cref="System.Char"><c>char</c></see> value for registered character.</returns>
+  /// <returns>Returns alternative <see cref="char"><c>char</c></see> value for registered character.</returns>
   public char CreateCustomCharacter(CGRamCharacter character, int characterCodePoint, ReadOnlySpan<byte> characterData)
     => OLEDInterface.RegisterCGRamCharacter(character, new Rune(characterCodePoint), characterData);
 
-  /// <returns>Returns alternative <see cref="System.Char"><c>char</c></see> value for registered character.</returns>
+  /// <returns>Returns alternative <see cref="char"><c>char</c></see> value for registered character.</returns>
   public char CreateCustomCharacter(CGRamCharacter character, char characterCodePoint, ReadOnlySpan<byte> characterData)
     => OLEDInterface.RegisterCGRamCharacter(character, new Rune(characterCodePoint), characterData);
 
-
-  /// <returns>Returns alternative <see cref="System.Char"><c>char</c></see> value for registered character.</returns>
+  /// <returns>Returns alternative <see cref="char"><c>char</c></see> value for registered character.</returns>
   public char CreateCustomCharacter(CGRamCharacter character, string characterCodePointString, ReadOnlySpan<byte> characterData)
     => OLEDInterface.RegisterCGRamCharacter(
       character,
@@ -151,7 +159,7 @@ public abstract class US2066DisplayModuleBase : ICharacterLcd {
       characterData
     );
 
-  /// <returns>Returns alternative <see cref="System.Char"><c>char</c></see> value for registered character.</returns>
+  /// <returns>Returns alternative <see cref="char"><c>char</c></see> value for registered character.</returns>
   public char CreateCustomCharacter(CGRamCharacter character, Rune characterCodePoint, ReadOnlySpan<byte> characterData)
     => OLEDInterface.RegisterCGRamCharacter(character, characterCodePoint, characterData);
 
@@ -203,7 +211,7 @@ public abstract class US2066DisplayModuleBase : ICharacterLcd {
   public void Write(CGRamCharacter character)
     => OLEDInterface.SendData(
       OLEDInterface.GetUserDefinedCharacterByte(
-        CGRamCharacter.Min <= character && character <= CGRamCharacter.Max
+        character is >= CGRamCharacter.Min and <= CGRamCharacter.Max
           ? (int)character
           : throw new ArgumentException($"invalid value ({character})", nameof(character))
       )

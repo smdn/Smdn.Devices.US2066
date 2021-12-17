@@ -48,9 +48,9 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
 
   public virtual int Address { get; private protected set; } = default;
   public virtual int PartID { get; private protected set; } = default;
-  public virtual bool IsBusy => ReadBusyFlagAndAddressPartID().isBusy;
+  public virtual bool IsBusy => ReadBusyFlagAndAddressPartID().IsBusy;
 
-  private ReadOnlyMemory<(int offset, int length)> ddramAddressRanges = default;
+  private ReadOnlyMemory<(int Offset, int Length)> ddramAddressRanges = default;
   internal int DDRamAddressWidth { get; private set; } = default;
 
   public int NumberOfUserDefinedCharactersSupported {
@@ -65,10 +65,10 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
 
   internal const int MaxNumberOfCGRamCharactersSupported = 8;
 
-  private const int firstCGRamCharacterAlternativeCodePoint = 0xE660; // U+E660~E+E668 (Private Use Area)
-  private static readonly (Rune min, Rune max) cgramCharacterAlternativeCodePointRange = (
-    new Rune(firstCGRamCharacterAlternativeCodePoint),
-    new Rune(firstCGRamCharacterAlternativeCodePoint + MaxNumberOfCGRamCharactersSupported)
+  private const int FirstCGRamCharacterAlternativeCodePoint = 0xE660; // U+E660~E+E668 (Private Use Area)
+  private static readonly (Rune Min, Rune Max) cgramCharacterAlternativeCodePointRange = (
+    new Rune(FirstCGRamCharacterAlternativeCodePoint),
+    new Rune(FirstCGRamCharacterAlternativeCodePoint + MaxNumberOfCGRamCharactersSupported)
   );
 
   private readonly Rune[] cgramCharacterCodePoints = new Rune[MaxNumberOfCGRamCharactersSupported];
@@ -98,7 +98,7 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
     set {
       if (value == cgramUsage)
         return; // do nothing
-      if (!(CGRamUsage.OPR_00b <= value && value <= CGRamUsage.OPR_11b))
+      if (value is not (>= CGRamUsage.OPR_00b and <= CGRamUsage.OPR_11b))
         throw new ArgumentException($"invalid value ({value})", nameof(CGRamUsage));
 
       cgramUsage = value;
@@ -153,10 +153,10 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
     set {
       if (contrast == value)
         return; // do nothing
-      contrast = (MinContrast <= value && value <= MaxContrast
+      contrast = value is >= MinContrast and <= MaxContrast
         ? (byte)value
         : throw new ArgumentOutOfRangeException(nameof(Contrast), value, $"must be in range of {MinContrast}~{MaxContrast}")
-      );
+;
 
       SendOLEDCommandSequence(OLEDCommandSet.SetContrastControl, contrast);
     }
@@ -278,7 +278,7 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
     }
 
     CharacterGenerator = CharacterGeneratorEncoding.CGRomC;
-    //Clear(); this will be called by CharacterGenerator.Setter
+    // Clear(); this will be called by CharacterGenerator.Setter
 
     Home();
 
@@ -404,13 +404,13 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
         ? line
         : throw new ArgumentOutOfRangeException(paramName, line, $"must be in range between 0 and {ddramAddressRanges.Length}");
     int ThrowIfCursorPositionOutOfRange(int line, int position, string paramName)
-      => (0 <= position && position < ddramAddressRanges.Span[line].length)
+      => (0 <= position && position < ddramAddressRanges.Span[line].Length)
         ? position
-        : throw new ArgumentOutOfRangeException(paramName, position, $"must be in range between 0 and {ddramAddressRanges.Span[line].length}");
+        : throw new ArgumentOutOfRangeException(paramName, position, $"must be in range between 0 and {ddramAddressRanges.Span[line].Length}");
 
     SendSetDDRamAddressCommand(
       (byte)(
-        ddramAddressRanges.Span[ThrowIfCursorLineOutOfRange(line, nameof(line))].offset + ThrowIfCursorPositionOutOfRange(line, position, nameof(position))
+        ddramAddressRanges.Span[ThrowIfCursorLineOutOfRange(line, nameof(line))].Offset + ThrowIfCursorPositionOutOfRange(line, position, nameof(position))
       )
     );
 
@@ -437,7 +437,7 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
 
     try {
       // IS=1
-      SendCommandAwaitExcecutionTime((byte)((byte)ExtendedCommandSet.OLEDCharacterization | extensionRegisterIS), executionTime_37us);
+      SendCommandAwaitExcecutionTime((byte)ExtendedCommandSet.OLEDCharacterization | extensionRegisterIS, executionTime_37us);
 
       try {
         SendCommandAwaitExcecutionTime((byte)command, executionTime_37us);
@@ -468,9 +468,9 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
 
       SendDataAwaitExecutionTime(stackalloc byte[1] {
         (byte)(
-          (Enum.IsDefined(opr) ? (byte)opr : (byte)0b_00 /*as default*/) |
+          (Enum.IsDefined(opr) ? (byte)opr : 0b_00 /*as default*/) |
           (Enum.IsDefined(rom) ? (byte)rom : (byte)CGRom.Invalid)
-        )
+        ),
       });
     }
     finally {
@@ -482,13 +482,13 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
   internal void SendSetDDRamAddressCommand(byte address)
     => SendCommandAwaitExcecutionTime((byte)((byte)FundamentalCommandSet.SetDDRamAddress | address), executionTime_37us);
 
-  /// <returns>Returns alternative <see cref="System.Char"><c>char</c></see> value for registered character.</returns>
+  /// <returns>Returns alternative <see cref="char"><c>char</c></see> value for registered character.</returns>
   public char RegisterCGRamCharacter(CGRamCharacter character, Rune characterCodePoint, ReadOnlySpan<byte> characterData)
   {
-    if (!(CGRamCharacter.Character0 <= character && character <= CGRamCharacter.Character7))
+    if (character is not (>= CGRamCharacter.Character0 and <= CGRamCharacter.Character7))
       throw new ArgumentOutOfRangeException(nameof(character), character, $"must be in range of {CGRamCharacter.Character0}~{CGRamCharacter.Character7}");
 
-    if (characterCodePoint != default(Rune))
+    if (characterCodePoint != default)
       cgramCharacterCodePoints[(int)character] = characterCodePoint;
 
     WriteCGRamCharacter(character, characterData);
@@ -496,7 +496,7 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
     // reset DDRAM address (required to refresh display?)
     SetCursorPosition(CursorLine, CursorPosition);
 
-    return (char)(cgramCharacterAlternativeCodePointRange.min.Value + (int)character);
+    return (char)(cgramCharacterAlternativeCodePointRange.Min.Value + (int)character);
   }
 
   private void WriteCGRamCharacter(CGRamCharacter character, ReadOnlySpan<byte> characterData)
@@ -524,8 +524,8 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
   {
     by = default;
 
-    if (cgramCharacterAlternativeCodePointRange.min <= codePoint && codePoint <= cgramCharacterAlternativeCodePointRange.max) {
-      by = GetUserDefinedCharacterByte(codePoint.Value - cgramCharacterAlternativeCodePointRange.min.Value);
+    if (cgramCharacterAlternativeCodePointRange.Min <= codePoint && codePoint <= cgramCharacterAlternativeCodePointRange.Max) {
+      by = GetUserDefinedCharacterByte(codePoint.Value - cgramCharacterAlternativeCodePointRange.Min.Value);
       return true;
     }
 
@@ -547,21 +547,20 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
 
   private void SendCommandAwaitExcecutionTime(byte command, TimeSpan expectedExecutionTime)
   {
-    SendCommands((ReadOnlySpan<byte>)stackalloc byte[1] { command });
+    SendCommands(stackalloc byte[1] { command });
 
     Thread.Sleep(expectedExecutionTime);
   }
 
   public override void SendCommand(byte command)
-    => SendCommands((ReadOnlySpan<byte>)stackalloc byte[1] { command });
-
+    => SendCommands(stackalloc byte[1] { command });
 
   /*
    * read operations
    */
   protected abstract byte ReceiveByte(byte controlByte);
 
-  private (bool isBusy, int address, int partId) ReadBusyFlagAndAddressPartID()
+  private (bool IsBusy, int Address, int PartId) ReadBusyFlagAndAddressPartID()
   {
     const byte controlByte =
       0b_0_0000000 | // Continuation bit (0: the transmission of the following information will contain data bytes only)
@@ -573,9 +572,9 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
     var second = ReceiveByte(controlByte); // second time: part ID
 
     return (
-      isBusy:   (second & 0b_1_0000000) != 0,
-      address:   first  & 0b_0_1111111,
-      partId:    second & 0b_0_1111111
+      IsBusy: (second & 0b_1_0000000) != 0,
+      Address: first & 0b_0_1111111,
+      PartId: second & 0b_0_1111111
     );
   }
 }

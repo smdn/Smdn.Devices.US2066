@@ -6,7 +6,9 @@ using System.Device.I2c;
 
 namespace Smdn.Devices.US2066;
 
+#pragma warning disable IDE0040
 partial class US2066 {
+#pragma warning restore IDE0040
   public static US2066 Create(int deviceAddress, int busId = 1)
     => Create(new I2cConnectionSettings(busId: busId, deviceAddress: deviceAddress));
 

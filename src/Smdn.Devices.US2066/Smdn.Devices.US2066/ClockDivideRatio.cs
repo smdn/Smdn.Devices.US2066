@@ -1,7 +1,6 @@
 // SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
 // SPDX-License-Identifier: MIT
-
-using System;
+#pragma warning disable CA1069 // The enum member has the same constant value
 
 namespace Smdn.Devices.US2066;
 

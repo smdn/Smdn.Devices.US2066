@@ -7,8 +7,8 @@ using System.Device.I2c;
 namespace Smdn.Devices.US2066;
 
 internal class US2066I2C : US2066 {
-  private I2cDevice _i2cDevice;
-  private I2cDevice I2CDevice => _i2cDevice ?? throw new ObjectDisposedException(GetType().FullName);
+  private I2cDevice i2cDevice;
+  private I2cDevice I2CDevice => i2cDevice ?? throw new ObjectDisposedException(GetType().FullName);
 
   private readonly bool isI2CDeviceMCP2221;
 
@@ -16,24 +16,28 @@ internal class US2066I2C : US2066 {
     get => throw new NotSupportedException();
     private protected set => throw new NotSupportedException();
   }
+
   public override int PartID {
     get => throw new NotSupportedException();
     private protected set => throw new NotSupportedException();
   }
+
   public override bool IsBusy => throw new NotSupportedException();
 
   public US2066I2C(I2cDevice i2cDevice)
   {
-    this._i2cDevice = i2cDevice ?? throw new ArgumentNullException(nameof(i2cDevice));
+    this.i2cDevice = i2cDevice ?? throw new ArgumentNullException(nameof(i2cDevice));
     this.isI2CDeviceMCP2221 = i2cDevice.GetType().FullName.Equals("Smdn.Devices.MCP2221.GpioAdapter.MCP2221I2cDevice", StringComparison.Ordinal);
   }
 
   protected override void Dispose(bool disposing)
   {
     if (disposing) {
-      _i2cDevice?.Dispose();
-      _i2cDevice = null;
+      i2cDevice?.Dispose();
+      i2cDevice = null;
     }
+
+    base.Dispose(disposing);
   }
 
   protected override void SendByteSequence(byte controlByte, ReadOnlySpan<byte> byteSequence)
