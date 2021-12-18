@@ -1,0 +1,4 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+[CGRomBitmap.*.cs]
+generated_code = true
