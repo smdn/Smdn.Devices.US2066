@@ -40,8 +40,8 @@ internal class CGRomCharacters {
   private const char c_unmap = '\uE200';
 #pragma warning restore SA1303
 
-  internal static bool IsUndefined(char ch) => ch is >= c_undef and <= ((char)(c_undef + 0xFF));
-  internal static bool IsUnmapped(char ch) => ch is >= c_unmap and <= ((char)(c_unmap + 0xFF));
+  internal static bool IsUndefined(char ch) => ch is >= c_undef and <= (char)(c_undef + 0xFF);
+  internal static bool IsUnmapped(char ch) => ch is >= c_unmap and <= (char)(c_unmap + 0xFF);
 
   internal static readonly (char, byte)[] CharacterMapRomA = GenerateSortedCharacterMap(
     new char[][] {

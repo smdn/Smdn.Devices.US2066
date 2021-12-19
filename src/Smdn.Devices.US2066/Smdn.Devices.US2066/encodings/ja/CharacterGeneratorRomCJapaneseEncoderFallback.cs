@@ -7,7 +7,7 @@ namespace Smdn.Devices.US2066;
 
 public class CharacterGeneratorRomCJapaneseEncoderFallback : CharacterGeneratorEncoderCollationFallback {
   public CharacterGeneratorRomCJapaneseEncoderFallback(
-    string defaultReplacementString = CharacterGeneratorEncoderFallback.DefaultReplacementString
+    string defaultReplacementString = DefaultReplacementString
   )
     : base(defaultReplacementString: defaultReplacementString)
   {

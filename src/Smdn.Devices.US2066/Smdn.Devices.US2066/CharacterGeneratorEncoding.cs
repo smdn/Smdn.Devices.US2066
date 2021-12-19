@@ -22,7 +22,7 @@ public abstract class CharacterGeneratorEncoding : Encoding {
   public static bool IsUndefinedCharacter(char ch) => CGRomCharacters.IsUndefined(ch);
 
   internal CGRom CGRom { get; }
-  private ICGRam cgram = null;
+  private ICGRam cgram;
 
 #pragma warning disable SA1316 // Tuple element names should use correct casing
   private readonly (char ch, byte by)[] characterMap;
@@ -43,7 +43,7 @@ public abstract class CharacterGeneratorEncoding : Encoding {
       decoderFallback: null
     )
   {
-    (this.CGRom, this.characterMap) = this switch {
+    (CGRom, characterMap) = this switch {
       CharacterGeneratorRomAEncoding => (CGRom.A, CGRomCharacters.CharacterMapRomA),
       CharacterGeneratorRomBEncoding => (CGRom.B, CGRomCharacters.CharacterMapRomB),
       CharacterGeneratorRomCEncoding => (CGRom.C, CGRomCharacters.CharacterMapRomC),
@@ -130,7 +130,7 @@ public abstract class CharacterGeneratorEncoding : Encoding {
       if (
         isRune &&
         rune.IsBmp &&
-        0 <= Array.BinarySearch<(char, byte)>(characterMap, ((char)rune.Value, default(byte)), CGRomCharacters.CharacterMapEntryComparer)
+        0 <= Array.BinarySearch(characterMap, ((char)rune.Value, default(byte)), CGRomCharacters.CharacterMapEntryComparer)
       ) {
         lengthOfCountedChars = 1; // rune.Utf16SequenceLength = 1
         byteCount++;
@@ -207,7 +207,7 @@ public abstract class CharacterGeneratorEncoding : Encoding {
 
       // 2: CGROM
       if (isRune && rune.IsBmp) {
-        var indexOfCharacterMap = Array.BinarySearch<(char, byte)>(characterMap, ((char)rune.Value, default(byte)), CGRomCharacters.CharacterMapEntryComparer);
+        var indexOfCharacterMap = Array.BinarySearch(characterMap, ((char)rune.Value, default(byte)), CGRomCharacters.CharacterMapEntryComparer);
 
         if (0 <= indexOfCharacterMap) {
           lengthOfConvertedChars = 1; // rune.Utf16SequenceLength = 1

@@ -20,8 +20,8 @@ public class CharacterGeneratorEncoderFallback : EncoderFallback {
   )
   {
     // TODO: reject surrogates
-    this.ReplacementString = defaultReplacementString ?? throw new ArgumentNullException(nameof(defaultReplacementString));
-    this.EnableCollation = enableCollation;
+    ReplacementString = defaultReplacementString ?? throw new ArgumentNullException(nameof(defaultReplacementString));
+    EnableCollation = enableCollation;
   }
 
   public override EncoderFallbackBuffer CreateFallbackBuffer()
