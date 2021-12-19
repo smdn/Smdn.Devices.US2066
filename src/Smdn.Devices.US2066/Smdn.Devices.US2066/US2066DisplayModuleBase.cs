@@ -166,10 +166,10 @@ public abstract class US2066DisplayModuleBase : ICharacterLcd {
   public void SetCursorPosition(int left, int top)
     => OLEDInterface.SetCursorPosition(top, left);
 
-  public void SetCursorPosition((int left, int top) position)
-    => OLEDInterface.SetCursorPosition(position.top, position.left);
+  public void SetCursorPosition((int Left, int Top) position)
+    => OLEDInterface.SetCursorPosition(position.Top, position.Left);
 
-  public (int left, int top) GetCursorPosition()
+  public (int Left, int Top) GetCursorPosition()
     => (OLEDInterface.CursorPosition, OLEDInterface.CursorLine);
 
   public void Write(string text)
