@@ -1,7 +1,7 @@
-// Smdn.Devices.US2066.dll (Smdn.Devices.US2066)
+// Smdn.Devices.US2066.dll (Smdn.Devices.US2066-0.9.1 (net5.0))
 //   Name: Smdn.Devices.US2066
-//   AssemblyVersion: 0.9.0.0
-//   InformationalVersion: 0.9 (net5.0)
+//   AssemblyVersion: 0.9.1.0
+//   InformationalVersion: 0.9.1 (net5.0)
 //   TargetFramework: .NETCoreApp,Version=v5.0
 //   Configuration: Release
 
@@ -293,7 +293,7 @@ namespace Smdn.Devices.US2066 {
   }
 
   public abstract class US2066DisplayModuleBase : ICharacterLcd {
-    protected US2066DisplayModuleBase(US2066 _oledInterface) {}
+    protected US2066DisplayModuleBase(US2066 oledInterface) {}
 
     public int Address { get; }
     public bool BlinkingCursorVisible { get; set; }
@@ -326,11 +326,12 @@ namespace Smdn.Devices.US2066 {
     public char CreateCustomCharacter(CGRamCharacter character, int characterCodePoint, ReadOnlySpan<byte> characterData) {}
     public char CreateCustomCharacter(CGRamCharacter character, string characterCodePointString, ReadOnlySpan<byte> characterData) {}
     public void CreateCustomCharacter(int location, ReadOnlySpan<byte> characterMap) {}
+    protected virtual void Dispose(bool disposing) {}
     public void Dispose() {}
-    public (int left, int top) GetCursorPosition() {}
+    public (int Left, int Top) GetCursorPosition() {}
     public void Home() {}
     public void ResetFadeOutStep() {}
-    public void SetCursorPosition((int left, int top) position) {}
+    public void SetCursorPosition((int Left, int Top) position) {}
     public void SetCursorPosition(int left, int top) {}
     public void Write(CGRamCharacter character) {}
     public void Write(ReadOnlySpan<byte> text) {}
