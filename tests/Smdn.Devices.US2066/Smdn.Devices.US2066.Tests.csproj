@@ -3,7 +3,4 @@ SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
 SPDX-License-Identifier: MIT
 -->
 <Project Sdk="Microsoft.NET.Sdk">
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Smdn.Devices.US2066\Smdn.Devices.US2066.csproj" />
-  </ItemGroup>
 </Project>
