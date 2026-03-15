@@ -18,7 +18,7 @@ The supported display modules are listed in [tested and supported display module
 ## Hardware supports
 `Smdn.Devices.US2066` is based on [Iot.Device.Bindings](https://www.nuget.org/packages/Iot.Device.Bindings/). This library enables you to control OLED character displays connected to the board like Raspberry Pi which `Iot.Device.Bindings` supports.
 
-Also combined with the library [Smdn.Devices.Mcp2221A](https://github.com/smdn/Smdn.Devices.Mcp2221A), you can control the OLED displays via USB connection even on generic PCs without using the specific board like Arduino. See [MCP2221 example](examples/MCP2221/).
+Also combined with the library [Smdn.Devices.Mcp2221A](https://github.com/smdn/Smdn.Devices.Mcp2221A), you can control the OLED displays via USB connection even on generic PCs without using the specific board like Arduino. See [MCP2221A example](examples/MCP2221A/).
 
 ## Library API features
 ### `string` to `byte[]` conversion

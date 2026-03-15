@@ -9,14 +9,14 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Management;
 
-#if MCP2221
+#if MCP2221A
 using Microsoft.Extensions.DependencyInjection;
 using Smdn.Devices.Mcp2221A;
 using Smdn.IO.UsbHid.DependencyInjection;
 #endif
 using Smdn.Devices.US2066;
 
-#if MCP2221
+#if MCP2221A
 var services = new ServiceCollection();
 
 services.AddHidSharpUsbHid();
