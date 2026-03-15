@@ -1,0 +1,12 @@
+﻿<!--
+SPDX-FileCopyrightText: 2026 smdn <smdn@smdn.jp>
+SPDX-License-Identifier: MIT
+-->
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Smdn.Devices.US2066/Smdn.Devices.US2066.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Smdn.Devices.US2066/Smdn.Devices.US2066.Tests.csproj" />
+  </Folder>
+</Solution>
