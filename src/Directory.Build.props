@@ -3,15 +3,13 @@ SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
 SPDX-License-Identifier: MIT
 -->
 <Project>
-  <PropertyGroup>
+  <Import Project="Sdk.props" Sdk="Smdn.MSBuild.ProjectAssets.Library" />
+
+  <PropertyGroup Label="Configurations for Smdn.MSBuild.ProjectAssets.*">
     <SmdnBuildAssetRootDirectory>$(MSBuildThisFileDirectory)..\</SmdnBuildAssetRootDirectory>
     <APIListOutputBaseDirectory>$(MSBuildThisFileDirectory)..\doc\api-list\</APIListOutputBaseDirectory>
+    <APIListMinPackageVersion>1.8.1</APIListMinPackageVersion>
   </PropertyGroup>
-
-  <ImportGroup Label="project assets">
-    <Import Project="$(MSBuildThisFileDirectory)ProjectAssets.props" />
-    <Import Project="$(SmdnProjectAssets_PropsImports)" />
-  </ImportGroup>
 
   <PropertyGroup Label="package properties">
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -22,4 +20,13 @@ SPDX-License-Identifier: MIT
     <RepositoryUrl>https://github.com/smdn/Smdn.Devices.US2066</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference
+      Include="Smdn.MSBuild.DefineConstants.NETSdkApi"
+      Version="[1.8.1]"
+      PrivateAssets="all"
+      IncludeAssets="build"
+    />
+  </ItemGroup>
 </Project>
