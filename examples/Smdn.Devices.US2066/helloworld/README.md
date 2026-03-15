@@ -19,7 +19,7 @@ Required devices and parts are as follows:
 
 ## Wiring up
 Wire up the devices and parts as shown in the wiring diagram below.
-![Raspberry Pi + SO1602A I2C wiring](../../doc/wiring/RaspberryPi_SO1602A_I2C.svg)
+![Raspberry Pi + SO1602A I2C wiring](../../../doc/wiring/RaspberryPi_SO1602A_I2C.svg)
 
 
 
@@ -30,7 +30,7 @@ Note: If you want to use **SO2002A** instead of SO1602A, modify the code to use 
 
 
 ## Hello, world!
-If the project run properly, SO1602A shows the text `Hello, world!` like this: ![H](../../misc/characterbitmaps//CGROM-A/40/48.svg)![e](../../misc/characterbitmaps//CGROM-A/60/65.svg)![l](../../misc/characterbitmaps//CGROM-A/60/6C.svg)![l](../../misc/characterbitmaps//CGROM-A/60/6C.svg)![o](../../misc/characterbitmaps//CGROM-A/60/6F.svg)![,](../../misc/characterbitmaps//CGROM-A/20/2C.svg)![ ](../../misc/characterbitmaps//CGROM-A/20/20.svg)![w](../../misc/characterbitmaps//CGROM-A/70/77.svg)![o](../../misc/characterbitmaps//CGROM-A/60/6F.svg)![r](../../misc/characterbitmaps//CGROM-A/70/72.svg)![l](../../misc/characterbitmaps//CGROM-A/60/6C.svg)![d](../../misc/characterbitmaps//CGROM-A/60/64.svg)![!](../../misc/characterbitmaps//CGROM-A/20/21.svg)
+If the project run properly, SO1602A shows the text `Hello, world!` like this: ![H](../../../misc/characterbitmaps//CGROM-A/40/48.svg)![e](../../../misc/characterbitmaps//CGROM-A/60/65.svg)![l](../../../misc/characterbitmaps//CGROM-A/60/6C.svg)![l](../../../misc/characterbitmaps//CGROM-A/60/6C.svg)![o](../../../misc/characterbitmaps//CGROM-A/60/6F.svg)![,](../../../misc/characterbitmaps//CGROM-A/20/2C.svg)![ ](../../../misc/characterbitmaps//CGROM-A/20/20.svg)![w](../../../misc/characterbitmaps//CGROM-A/70/77.svg)![o](../../../misc/characterbitmaps//CGROM-A/60/6F.svg)![r](../../../misc/characterbitmaps//CGROM-A/70/72.svg)![l](../../../misc/characterbitmaps//CGROM-A/60/6C.svg)![d](../../../misc/characterbitmaps//CGROM-A/60/64.svg)![!](../../../misc/characterbitmaps//CGROM-A/20/21.svg)
 
 ![expected behavior](./expected-behavior.jpg)
 

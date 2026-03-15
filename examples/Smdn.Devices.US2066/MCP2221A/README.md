@@ -45,7 +45,7 @@ Required devices and parts are as follows:
 
 ## Wiring up
 Wire up the devices and parts as shown in the wiring diagram below.
-![MCP2221A + SO1602A I2C wiring](../../doc/wiring/MCP2221A_SO1602A_I2C.svg)
+![MCP2221A + SO1602A I2C wiring](../../../doc/wiring/MCP2221A_SO1602A_I2C.svg)
 
 This diagram shows the case where `TA48033S` is used as a 3.3V regulator. If you will attempt to use other regulators, replace capacitors with compliant ones.
 
