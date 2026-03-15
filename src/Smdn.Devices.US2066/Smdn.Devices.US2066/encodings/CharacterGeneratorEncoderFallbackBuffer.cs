@@ -7,7 +7,7 @@ namespace Smdn.Devices.US2066;
 
 public class CharacterGeneratorEncoderFallbackBuffer : EncoderFallbackBuffer {
   private readonly CharacterGeneratorEncoderFallback fallback;
-  private string replacement = null;
+  private string replacement;
   private int fallbackOffset = -1;
   private int fallbackRemaining = -1;
 

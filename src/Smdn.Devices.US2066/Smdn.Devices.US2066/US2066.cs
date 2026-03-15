@@ -39,19 +39,19 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
     SetDisplayClockDivideRatioOscillatorFrequency = 0b_1101_0101,
   }
 
-  public int CursorPosition { get; private set; } = 0;
-  public int CursorLine { get; private set; } = 0;
+  public int CursorPosition { get; private set; }
+  public int CursorLine { get; private set; }
 
   public DisplayLineNumber NumberOfLines { get; private set; } = DisplayLineNumber.Undefined;
   public DisplayDotFormat DotFormat { get; private set; } = DisplayDotFormat.Undefined;
-  private byte functionSetNBit = default;
+  private byte functionSetNBit;
 
-  public virtual int Address { get; private protected set; } = default;
-  public virtual int PartID { get; private protected set; } = default;
+  public virtual int Address { get; private protected set; }
+  public virtual int PartID { get; private protected set; }
   public virtual bool IsBusy => ReadBusyFlagAndAddressPartID().IsBusy;
 
-  private ReadOnlyMemory<(int Offset, int Length)> ddramAddressRanges = default;
-  internal int DDRamAddressWidth { get; private set; } = default;
+  private ReadOnlyMemory<(int Offset, int Length)> ddramAddressRanges;
+  internal int DDRamAddressWidth { get; private set; }
 
   public int NumberOfUserDefinedCharactersSupported {
     get => cgramUsage switch {
@@ -108,7 +108,7 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
     }
   }
 
-  private DisplayControl displayControl = default;
+  private DisplayControl displayControl;
 
   private static DisplayControl SetDisplayControlFlag(ref DisplayControl value, DisplayControl bit, bool trueForOnOtherwiseOff)
     => value = trueForOnOtherwiseOff ? (value | bit) : (value & ~bit);
