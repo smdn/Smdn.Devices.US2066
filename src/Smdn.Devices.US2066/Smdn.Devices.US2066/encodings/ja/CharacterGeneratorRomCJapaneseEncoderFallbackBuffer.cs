@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 namespace Smdn.Devices.US2066;
 
-internal class CharacterGeneratorRomCJapaneseEncoderFallbackBuffer : CharacterGeneratorEncoderFallbackBuffer {
+internal sealed class CharacterGeneratorRomCJapaneseEncoderFallbackBuffer : CharacterGeneratorEncoderFallbackBuffer {
   internal CharacterGeneratorRomCJapaneseEncoderFallbackBuffer(CharacterGeneratorRomCJapaneseEncoderFallback fallback)
     : base(fallback)
   {

@@ -6,7 +6,7 @@ using System.Device.I2c;
 
 namespace Smdn.Devices.US2066;
 
-internal class US2066I2C : US2066 {
+internal sealed class US2066I2C : US2066 {
   private I2cDevice i2cDevice;
   private I2cDevice I2CDevice => i2cDevice ?? throw new ObjectDisposedException(GetType().FullName);
 

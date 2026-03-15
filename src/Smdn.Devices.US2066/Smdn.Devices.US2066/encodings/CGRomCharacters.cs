@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Smdn.Devices.US2066;
 
-internal class CGRomCharacters {
+internal sealed class CGRomCharacters {
   internal static readonly IComparer<(char, byte)> CharacterMapEntryComparer =
     Comparer<(char, byte)>.Create(static ((char ch, byte by) x, (char ch, byte by) y) => Comparer<char>.Default.Compare(x.ch, y.ch));
 
