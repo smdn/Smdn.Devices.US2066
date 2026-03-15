@@ -16,12 +16,13 @@ SPDX-License-Identifier: MIT
 
   <PropertyGroup Label="metadata">
     <Description>
-<![CDATA[Smdn.Devices.US2066 is a .NET library for OLED character display modules which has US2066 controller chip, based on System.Device.Gpio and Iot.Device.Bindings.
-This library supports OLED display module SO1602A, SO2002A, and other display modules can also be worked by deriving from the predefined base class.
+<![CDATA[`$(AssemblyName)` is a .NET library for OLED character display modules which has [WiseChip US2066](https://www.wisechip.com.tw/) controller chip, based on [System.Device.Gpio and Iot.Device.Bindings](https://github.com/dotnet/iot).
+This library supports OLED display module `SO1602A`, `SO2002A`, and other display modules can also be worked by deriving from the predefined base class.
 ]]>
     </Description>
-    <PackageTags>System.Device.Gpio,Iot.Device.Bindings,OLED display,US2066,SO1602A,SO2002A</PackageTags>
+    <PackageTags>System.Device.Gpio,Iot.Device.Bindings,OLED,OLED-display,US2066,SO1602A,SO2002A</PackageTags>
     <CopyrightYear>2021</CopyrightYear>
+    <GenerateNupkgReadmeFileDependsOnTargets>$(GenerateNupkgReadmeFileDependsOnTargets);GenerateReadmeFileContent</GenerateNupkgReadmeFileDependsOnTargets>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,4 +35,39 @@ This library supports OLED display module SO1602A, SO2002A, and other display mo
     <PackageReference Include="SixLabors.ImageSharp" Version="2.1.11" />
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
+
+  <Target Name="GenerateReadmeFileContent" DependsOnTargets="ReadReadmeFileNoticeSectionContent">
+    <PropertyGroup>
+      <PackageReadmeFileContent><![CDATA[# $(PackageId) $(PackageVersion)
+$(Description)
+
+## Usage
+Firstly, add package `$(PackageId)` to your project.
+
+```
+dotnet add package $(PackageId)
+```
+
+Nextly, write your codes. The simplest `Hello, world!` code is like below. This code uses the display module `SO1602A`.
+
+```cs
+using Smdn.Devices.US2066;
+
+using var display = SO1602A.Create(SO1602A.DefaultI2CAddress);
+
+display.Write("Hello, world!");
+```
+
+For detailed instructions, including wiring of the devices and parts, see [examples/helloworld]($(RepositoryUrl)/tree/$(SmdnWorkflowsDotNetExpectedReleaseTag)/examples/$(PackageId)/helloworld/).
+
+More examples can be found on the [GitHub repository]($(RepositoryUrl)/tree/$(SmdnWorkflowsDotNetExpectedReleaseTag)/examples/$(PackageId)/).
+
+## Contributing
+This project welcomes contributions, feedbacks and suggestions. You can contribute to this project by submitting [Issues]($(RepositoryUrl)/issues/new/choose) or [Pull Requests]($(RepositoryUrl)/pulls/) on the [GitHub repository]($(RepositoryUrl)).
+
+## Notice
+$(ReadmeFileNoticeSectionContent)
+]]></PackageReadmeFileContent>
+    </PropertyGroup>
+  </Target>
 </Project>
