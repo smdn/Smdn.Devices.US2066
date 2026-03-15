@@ -140,3 +140,30 @@ display.Write("Hello, world!");
 For detailed instructions, including wiring of the devices and parts, see [examples/helloworld](examples/helloworld/README.md).
 
 More examples can be found in [examples](examples/) directory.
+
+
+# For contributors
+Contributions are appreciated!
+
+If there's a feature you would like to add or a bug you would like to fix, please read [Contribution guidelines](./CONTRIBUTING.md) and create an Issue or Pull Request.
+
+IssueやPull Requestを送る際は、[Contribution guidelines](./CONTRIBUTING.md)をご覧頂ください。　可能なら英語が望ましいですが、日本語で構いません。
+
+
+# Notice
+<!-- #pragma section-start NupkgReadmeFile_Notice -->
+## License
+This project is licensed under the terms of the [MIT License](./LICENSE.txt).
+
+## Disclaimer
+(An English translation for the reference follows the text written in Japanese.)
+
+本プロジェクトは、`US2066`および対応しているOLEDディスプレイモジュールの製造元・供給元・販売元とは無関係の、非公式なものです。
+
+This is an unofficial project that has no affiliation with the manufacturers/vendors/suppliers of `US2066` or the applicable OLED display modules.
+
+## Credits
+This project uses the following components.
+
+- `System.Device.Gpio` and `Iot.Device.Bindings` ([dotnet/iot](https://github.com/dotnet/iot))
+<!-- #pragma section-end NupkgReadmeFile_Notice -->
