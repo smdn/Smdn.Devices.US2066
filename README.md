@@ -17,7 +17,7 @@ The supported display modules are listed in [tested and supported display module
 ## Hardware supports
 `Smdn.Devices.US2066` is based on [Iot.Device.Bindings](https://www.nuget.org/packages/Iot.Device.Bindings/). This library enables you to control OLED character displays connected to the board like Raspberry Pi which `Iot.Device.Bindings` supports.
 
-Also combined with the library [Smdn.Devices.Mcp2221A](https://github.com/smdn/Smdn.Devices.Mcp2221A), you can control the OLED displays via USB connection even on generic PCs without using the specific board like Arduino. See [MCP2221A example](examples/MCP2221A/).
+Also combined with the library [Smdn.Devices.Mcp2221A](https://github.com/smdn/Smdn.Devices.Mcp2221A), you can control the OLED displays via USB connection even on generic PCs without using the specific board like Arduino. See [MCP2221A example](examples/Smdn.Devices.US2066/MCP2221A/).
 
 ## Library API features
 ### `string` to `byte[]` conversion
@@ -39,7 +39,7 @@ As an example, the following `string`s will be displayed like below.
 |`"こんにちは、せかい！"`|![こ](./misc/characterbitmaps//CGROM-C/B0/BA.svg)![ん](./misc/characterbitmaps//CGROM-C/D0/DD.svg)![に](./misc/characterbitmaps//CGROM-C/C0/C6.svg)![ち](./misc/characterbitmaps//CGROM-C/C0/C1.svg)![は](./misc/characterbitmaps//CGROM-C/C0/CA.svg)![、](./misc/characterbitmaps//CGROM-C/A0/A4.svg)![せ](./misc/characterbitmaps//CGROM-C/B0/BE.svg)![か](./misc/characterbitmaps//CGROM-C/B0/B6.svg)![い](./misc/characterbitmaps//CGROM-C/B0/B2.svg)![！](./misc/characterbitmaps//CGROM-C/20/21.svg)|
 |`"Привет, мир!"`|![П](./misc/characterbitmaps//CGROM-B/80/8F.svg)![р](./misc/characterbitmaps//CGROM-B/90/90.svg)![и](./misc/characterbitmaps//CGROM-B/80/88.svg)![в](./misc/characterbitmaps//CGROM-B/80/82.svg)![е](./misc/characterbitmaps//CGROM-B/80/85.svg)![т](./misc/characterbitmaps//CGROM-B/90/92.svg)![,](./misc/characterbitmaps//CGROM-B/20/2C.svg)![ ](./misc/characterbitmaps//CGROM-B/20/20.svg)![м](./misc/characterbitmaps//CGROM-B/80/8C.svg)![и](./misc/characterbitmaps//CGROM-B/80/88.svg)![р](./misc/characterbitmaps//CGROM-B/90/90.svg)![!](./misc/characterbitmaps//CGROM-B/20/21.svg)|
 
-See example of [helloworld-ja](examples/helloworld-ja/) and [helloworld-ru](examples/helloworld-ru/).
+See example of [helloworld-ja](examples/Smdn.Devices.US2066/helloworld-ja/) and [helloworld-ru](examples/Smdn.Devices.US2066/helloworld-ru/).
 
 ### Custom characters
 `US2066` supports registering custom characters. `Smdn.Devices.US2066` can map custom characters to any characters including emojis on registration.
@@ -71,7 +71,7 @@ display.CreateCustomCharacter(
 display.Write("🙂");
 ```
 
-See example of [customcharacters](examples/customcharacters) for detail.
+See example of [customcharacters](examples/Smdn.Devices.US2066/customcharacters) for detail.
 
 
 
@@ -137,9 +137,9 @@ using var display = SO1602A.Create(SO1602A.DefaultI2CAddress);
 display.Write("Hello, world!");
 ```
 
-For detailed instructions, including wiring of the devices and parts, see [examples/helloworld](examples/helloworld/README.md).
+For detailed instructions, including wiring of the devices and parts, see [examples/Smdn.Devices.US2066/helloworld](examples/Smdn.Devices.US2066/helloworld/README.md).
 
-More examples can be found in [examples](examples/) directory.
+More examples can be found in [examples](examples/Smdn.Devices.US2066/) directory.
 
 
 # For contributors
