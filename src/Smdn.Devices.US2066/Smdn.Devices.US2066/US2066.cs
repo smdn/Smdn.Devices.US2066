@@ -1,5 +1,6 @@
 // SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
 // SPDX-License-Identifier: MIT
+#pragma warning disable CA1724 // CA1724: Type names should not match namespaces
 
 using System;
 using System.Text;
@@ -66,7 +67,7 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
   internal const int MaxNumberOfCGRamCharactersSupported = 8;
 
   private const int FirstCGRamCharacterAlternativeCodePoint = 0xE660; // U+E660~E+E668 (Private Use Area)
-  private static readonly (Rune Min, Rune Max) cgramCharacterAlternativeCodePointRange = (
+  private static readonly (Rune Min, Rune Max) CGRamCharacterAlternativeCodePointRange = (
     new Rune(FirstCGRamCharacterAlternativeCodePoint),
     new Rune(FirstCGRamCharacterAlternativeCodePoint + MaxNumberOfCGRamCharactersSupported)
   );
@@ -358,32 +359,32 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
     CursorPosition += lengthToSend;
   }
 
-  private static readonly TimeSpan executionTime_1_52ms = TimeSpan.FromMilliseconds(1.52);
-  private static readonly TimeSpan executionTime_37us = TimeSpan.FromMilliseconds(0.037);
+  private static readonly TimeSpan ExecutionTime_1_52ms = TimeSpan.FromMilliseconds(1.52);
+  private static readonly TimeSpan ExecutionTime_37us = TimeSpan.FromMilliseconds(0.037);
 
   private void SendDataAwaitExecutionTime(ReadOnlySpan<byte> dataSequence)
   {
-    const byte controlByte =
+    const byte ControlByte =
       0b_0_0000000 | // Continuation bit (0: the transmission of the following information will contain data bytes only)
       0b__1_000000;  // Data / Command Selection bit (1: defines the following data byte as a data)
 
-    SendByteSequence(controlByte, dataSequence);
+    SendByteSequence(ControlByte, dataSequence);
 
-    Thread.Sleep(executionTime_37us);
+    Thread.Sleep(ExecutionTime_37us);
   }
 
   public override void SendCommands(ReadOnlySpan<byte> values)
   {
-    const byte controlByte =
+    const byte ControlByte =
       0b_0_0000000 | // Continuation bit (0: the transmission of the following information will contain data bytes only)
       0b__0_000000;  // Data / Command Selection bit (0: defines the following data byte as a command)
 
-    SendByteSequence(controlByte, values);
+    SendByteSequence(ControlByte, values);
   }
 
   public void Clear()
   {
-    SendCommandAwaitExcecutionTime((byte)FundamentalCommandSet.ClearDisplay, executionTime_1_52ms);
+    SendCommandAwaitExecutionTime((byte)FundamentalCommandSet.ClearDisplay, ExecutionTime_1_52ms);
 
     CursorPosition = 0;
     CursorLine = 0;
@@ -391,7 +392,7 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
 
   public void Home()
   {
-    SendCommandAwaitExcecutionTime((byte)FundamentalCommandSet.ReturnHome, executionTime_1_52ms);
+    SendCommandAwaitExecutionTime((byte)FundamentalCommandSet.ReturnHome, ExecutionTime_1_52ms);
 
     CursorPosition = 0;
     CursorLine = 0;
@@ -429,42 +430,42 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
 
   private void SendOLEDCommandSequence(OLEDCommandSet command, byte? secondByte = default)
   {
-    const byte extensionRegisterRE = 0b_0000_0010;
-    const byte extensionRegisterIS = 0b_0000_0001;
+    const byte ExtensionRegisterRE = 0b_0000_0010;
+    const byte ExtensionRegisterIS = 0b_0000_0001;
 
     // RE=1
-    SendCommandAwaitExcecutionTime((byte)((byte)FundamentalCommandSet.FunctionSet | functionSetNBit | extensionRegisterRE), executionTime_37us);
+    SendCommandAwaitExecutionTime((byte)((byte)FundamentalCommandSet.FunctionSet | functionSetNBit | ExtensionRegisterRE), ExecutionTime_37us);
 
     try {
       // IS=1
-      SendCommandAwaitExcecutionTime((byte)ExtendedCommandSet.OLEDCharacterization | extensionRegisterIS, executionTime_37us);
+      SendCommandAwaitExecutionTime((byte)ExtendedCommandSet.OLEDCharacterization | ExtensionRegisterIS, ExecutionTime_37us);
 
       try {
-        SendCommandAwaitExcecutionTime((byte)command, executionTime_37us);
+        SendCommandAwaitExecutionTime((byte)command, ExecutionTime_37us);
 
         if (secondByte.HasValue)
-          SendCommandAwaitExcecutionTime(secondByte.Value, executionTime_37us);
+          SendCommandAwaitExecutionTime(secondByte.Value, ExecutionTime_37us);
       }
       finally {
         // IS=0
-        SendCommandAwaitExcecutionTime((byte)ExtendedCommandSet.OLEDCharacterization, executionTime_37us);
+        SendCommandAwaitExecutionTime((byte)ExtendedCommandSet.OLEDCharacterization, ExecutionTime_37us);
       }
     }
     finally {
       // RE=0
-      SendCommandAwaitExcecutionTime((byte)((byte)FundamentalCommandSet.FunctionSet | functionSetNBit), executionTime_37us);
+      SendCommandAwaitExecutionTime((byte)((byte)FundamentalCommandSet.FunctionSet | functionSetNBit), ExecutionTime_37us);
     }
   }
 
   private void SendFunctionSelectionBSequence(CGRamUsage opr, CGRom rom)
   {
-    const byte extensionRegisterRE = 0b_0000_0010;
+    const byte ExtensionRegisterRE = 0b_0000_0010;
 
     // RE=1
-    SendCommandAwaitExcecutionTime((byte)((byte)FundamentalCommandSet.FunctionSet | functionSetNBit | extensionRegisterRE), executionTime_37us);
+    SendCommandAwaitExecutionTime((byte)((byte)FundamentalCommandSet.FunctionSet | functionSetNBit | ExtensionRegisterRE), ExecutionTime_37us);
 
     try {
-      SendCommandAwaitExcecutionTime((byte)ExtendedCommandSet.FunctionSelectionB, executionTime_37us);
+      SendCommandAwaitExecutionTime((byte)ExtendedCommandSet.FunctionSelectionB, ExecutionTime_37us);
 
       SendDataAwaitExecutionTime(stackalloc byte[1] {
         (byte)(
@@ -475,12 +476,12 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
     }
     finally {
       // RE=0
-      SendCommandAwaitExcecutionTime((byte)((byte)FundamentalCommandSet.FunctionSet | functionSetNBit), executionTime_37us);
+      SendCommandAwaitExecutionTime((byte)((byte)FundamentalCommandSet.FunctionSet | functionSetNBit), ExecutionTime_37us);
     }
   }
 
   internal void SendSetDDRamAddressCommand(byte address)
-    => SendCommandAwaitExcecutionTime((byte)((byte)FundamentalCommandSet.SetDDRamAddress | address), executionTime_37us);
+    => SendCommandAwaitExecutionTime((byte)((byte)FundamentalCommandSet.SetDDRamAddress | address), ExecutionTime_37us);
 
   /// <returns>Returns alternative <see cref="char"><c>char</c></see> value for registered character.</returns>
   public char RegisterCGRamCharacter(CGRamCharacter character, Rune characterCodePoint, ReadOnlySpan<byte> characterData)
@@ -496,7 +497,7 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
     // reset DDRAM address (required to refresh display?)
     SetCursorPosition(CursorLine, CursorPosition);
 
-    return (char)(cgramCharacterAlternativeCodePointRange.Min.Value + (int)character);
+    return (char)(CGRamCharacterAlternativeCodePointRange.Min.Value + (int)character);
   }
 
   private void WriteCGRamCharacter(CGRamCharacter character, ReadOnlySpan<byte> characterData)
@@ -512,10 +513,10 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
 
   internal byte GetUserDefinedCharacterByte(int index)
   {
-    const byte fallback = 0x20; // SPACE
+    const byte Fallback = 0x20; // SPACE
 
     if (NumberOfUserDefinedCharactersSupported <= index)
-      return fallback;
+      return Fallback;
     else
       return (byte)(0x00 + index);
   }
@@ -524,8 +525,8 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
   {
     by = default;
 
-    if (cgramCharacterAlternativeCodePointRange.Min <= codePoint && codePoint <= cgramCharacterAlternativeCodePointRange.Max) {
-      by = GetUserDefinedCharacterByte(codePoint.Value - cgramCharacterAlternativeCodePointRange.Min.Value);
+    if (CGRamCharacterAlternativeCodePointRange.Min <= codePoint && codePoint <= CGRamCharacterAlternativeCodePointRange.Max) {
+      by = GetUserDefinedCharacterByte(codePoint.Value - CGRamCharacterAlternativeCodePointRange.Min.Value);
       return true;
     }
 
@@ -540,12 +541,12 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
   }
 
   private void SendSetCGRamAddressCommand(byte address)
-    => SendCommandAwaitExcecutionTime((byte)((byte)FundamentalCommandSet.SetCGRamAddress | address), executionTime_37us);
+    => SendCommandAwaitExecutionTime((byte)((byte)FundamentalCommandSet.SetCGRamAddress | address), ExecutionTime_37us);
 
   private void SendDisplayOnOffControlCommand(DisplayControl displayControl)
-    => SendCommandAwaitExcecutionTime((byte)((byte)FundamentalCommandSet.DisplayOnOffControl | (byte)displayControl), executionTime_37us);
+    => SendCommandAwaitExecutionTime((byte)((byte)FundamentalCommandSet.DisplayOnOffControl | (byte)displayControl), ExecutionTime_37us);
 
-  private void SendCommandAwaitExcecutionTime(byte command, TimeSpan expectedExecutionTime)
+  private void SendCommandAwaitExecutionTime(byte command, TimeSpan expectedExecutionTime)
   {
     SendCommands(stackalloc byte[1] { command });
 
@@ -562,14 +563,14 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
 
   private (bool IsBusy, int Address, int PartId) ReadBusyFlagAndAddressPartID()
   {
-    const byte controlByte =
+    const byte ControlByte =
       0b_0_0000000 | // Continuation bit (0: the transmission of the following information will contain data bytes only)
       0b__0_000000;  // Data / Command Selection bit (0: defines the following data byte as a command)
 
-    Thread.Sleep(executionTime_37us);
+    Thread.Sleep(ExecutionTime_37us);
 
-    var first  = ReceiveByte(controlByte); // first time: address counter
-    var second = ReceiveByte(controlByte); // second time: part ID
+    var first  = ReceiveByte(ControlByte); // first time: address counter
+    var second = ReceiveByte(ControlByte); // second time: part ID
 
     return (
       IsBusy: (second & 0b_1_0000000) != 0,

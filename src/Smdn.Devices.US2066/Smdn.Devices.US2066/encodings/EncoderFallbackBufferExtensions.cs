@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Smdn.Devices.US2066;
 
-internal static class EncoderFallbackExtensions {
+internal static class EncoderFallbackBufferExtensions {
   public static bool Fallback(this EncoderFallbackBuffer fallbackBuffer, Rune runeUnknown, int index)
   {
     Span<char> chars = stackalloc char[runeUnknown.Utf16SequenceLength];

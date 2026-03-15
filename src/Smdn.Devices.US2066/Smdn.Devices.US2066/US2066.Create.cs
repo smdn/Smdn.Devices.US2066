@@ -1,5 +1,6 @@
 // SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
 // SPDX-License-Identifier: MIT
+#pragma warning disable CA1724 // CA1724: Type names should not match namespaces
 
 using System;
 using System.Device.I2c;

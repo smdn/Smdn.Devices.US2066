@@ -71,10 +71,12 @@ public abstract class US2066DisplayModuleBase : ICharacterLcd {
   private static bool ThrowBacklightNotSupportedException()
     => throw new NotSupportedException("Backlight is not supported with US2066");
 
+#pragma warning disable CA1033
   bool ICharacterLcd.BacklightOn {
     get => ThrowBacklightNotSupportedException();
     set => ThrowBacklightNotSupportedException();
   }
+#pragma warning restore CA1033
 
   public bool DisplayOn {
     get => OLEDInterface.DisplayOn;
@@ -91,7 +93,9 @@ public abstract class US2066DisplayModuleBase : ICharacterLcd {
     set => OLEDInterface.BlinkingCursorVisible = value;
   }
 
+#pragma warning disable CA1033
   SixLabors.ImageSharp.Size ICharacterLcd.Size => new(NumberOfCharsPerLine, NumberOfLines);
+#pragma warning restore CA1033
 
   public int NumberOfCustomCharactersSupported => OLEDInterface.NumberOfUserDefinedCharactersSupported;
 
@@ -169,8 +173,10 @@ public abstract class US2066DisplayModuleBase : ICharacterLcd {
   public void SetCursorPosition((int Left, int Top) position)
     => OLEDInterface.SetCursorPosition(position.Top, position.Left);
 
+#pragma warning disable CA1024
   public (int Left, int Top) GetCursorPosition()
     => (OLEDInterface.CursorPosition, OLEDInterface.CursorLine);
+#pragma warning restore CA1024
 
   public void Write(string text)
     => Write((text ?? throw new ArgumentNullException(nameof(text))).AsSpan());

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Smdn.Devices.US2066;
 
-internal sealed class CGRomCharacters {
+internal static class CGRomCharacters {
   internal static readonly IComparer<(char, byte)> CharacterMapEntryComparer =
     Comparer<(char, byte)>.Create(static ((char ch, byte by) x, (char ch, byte by) y) => Comparer<char>.Default.Compare(x.ch, y.ch));
 
@@ -35,10 +35,10 @@ internal sealed class CGRomCharacters {
     return sortedMap;
   }
 
-#pragma warning disable SA1303
+#pragma warning disable IDE1006, SA1303
   private const char c_undef = '\uF800';
   private const char c_unmap = '\uE200';
-#pragma warning restore SA1303
+#pragma warning restore IDE1006, SA1303
 
   internal static bool IsUndefined(char ch) => ch is >= c_undef and <= (char)(c_undef + 0xFF);
   internal static bool IsUnmapped(char ch) => ch is >= c_unmap and <= (char)(c_unmap + 0xFF);

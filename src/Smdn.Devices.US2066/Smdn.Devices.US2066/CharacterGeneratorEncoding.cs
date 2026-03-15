@@ -198,10 +198,10 @@ public abstract class CharacterGeneratorEncoding : Encoding {
             : (rune: new Rune(chars[0]), isRune: true);
 
       // 1: CGRAM
-      if (cgram is not null && isRune && cgram.GetByte(rune, out var cgramChararacterByte)) {
+      if (cgram is not null && isRune && cgram.GetByte(rune, out var cgramCharacterByte)) {
         lengthOfConvertedChars = rune.Utf16SequenceLength;
         lengthOfConvertedBytes = 1;
-        bytes[0] = cgramChararacterByte;
+        bytes[0] = cgramCharacterByte;
         goto CONVERTED;
       }
 
