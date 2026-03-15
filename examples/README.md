@@ -1,13 +1,11 @@
-# Smdn.Devices.US2066 examples
+# Examples for Smdn.Devices.US2066
 
-- Examples for features
-  - [helloworld](./helloworld/): The simplest "Hello, world!" example, for getting started with Smdn.Devices.US2066.
-  - [helloworld-ja](./helloworld-ja/): The "Hello, world!" example to use Japanese language specific string conversion.
-  - [helloworld-ru](./helloworld-ru/): The "Hello, world!" example to use Russian language specific string conversion.
-  - [contrast](./contrast/): The example for controlling OLED contrast.
-  - [fadeout](./fadeout/): The example for controlling fade-out mode and internal oscillator frequency.
-  - [customcharacters](./customcharacters/): The example for registering and displaying custom characters.
-- Example of usage
-  - [clock-ja](./clock-ja/): Japanese date and time display using Kanji characters.
-  - [cpustats](./cpustats/): CPU statistics display. Temperature ℃ and usage %
-  - [MCP2221A](./MCP2221A/): The example of combining package [Smdn.Devices.Mcp2221A](https://github.com/smdn/Smdn.Devices.Mcp2221A) and controlling an OLED display via a USB connection on a normal PC.
+## How to run examples
+Move to each example directory and execute the command `dotnet run`.
+
+If configurations like device settings or other parameters are written in the code, modify them to match your configurations.
+
+## How to modify libraries
+Each example in this directory by default refers to published NuGet packages.
+
+You can change the property `UseLocalProjectInsteadOfPublishedPackage` in file [Directory.Build.props](./Directory.Build.props) to refer to a local project by changing it to `true`.

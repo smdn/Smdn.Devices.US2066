@@ -1,0 +1,27 @@
+﻿<!--
+SPDX-FileCopyrightText: 2023 smdn <smdn@smdn.jp>
+SPDX-License-Identifier: MIT
+-->
+<Project InitialTargets="ReplaceSmdnDevicesUS2066PackageReferencesToProjectReferences">
+  <!-- Replace PackageReference to ProjectReference of the local project -->
+  <Target
+    Name="ReplaceSmdnDevicesUS2066PackageReferencesToProjectReferences"
+    Condition=" '$(UseLocalProjectInsteadOfPublishedPackage)' == 'true' "
+  >
+    <ItemGroup>
+      <_SmdnDevicesUS2066Reference
+        Include="@(PackageReference)"
+        Condition="$([System.String]::new('%(Identity)').StartsWith('Smdn.Devices.US2066'))"
+        ProjectPath="$(MSBuildThisFileDirectory)..\src\%(Identity)\%(Identity).csproj"
+      />
+    </ItemGroup>
+
+    <ItemGroup>
+      <!-- Remove package references to Smdn.Devices.US2066.* -->
+      <PackageReference Remove="@(_SmdnDevicesUS2066Reference)" />
+
+      <!-- Include project reference to Smdn.Devices.US2066.* -->
+      <ProjectReference Include="%(_SmdnDevicesUS2066Reference.ProjectPath)" />
+    </ItemGroup>
+  </Target>
+</Project>

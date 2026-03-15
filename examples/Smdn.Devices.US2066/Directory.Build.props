@@ -1,0 +1,16 @@
+﻿<!--
+SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
+SPDX-License-Identifier: MIT
+-->
+<Project>
+  <Import Project="$(MSBuildThisFileDirectory)../Directory.Build.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Smdn.Devices.US2066" Version="0.9.1" />
+  </ItemGroup>
+</Project>

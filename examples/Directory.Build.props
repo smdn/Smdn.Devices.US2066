@@ -4,12 +4,10 @@ SPDX-License-Identifier: MIT
 -->
 <Project>
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
-    <LibrarySourceDirectory>$(MSBuildThisFileDirectory)\..\src\</LibrarySourceDirectory>
+    <!--
+      Set this property to `true` if you want to build and run the examples using the local projects
+      instead of published NuGet packages.
+    -->
+    <UseLocalProjectInsteadOfPublishedPackage>false</UseLocalProjectInsteadOfPublishedPackage>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="$(LibrarySourceDirectory)\Smdn.Devices.US2066\Smdn.Devices.US2066.csproj" />
-  </ItemGroup>
 </Project>
