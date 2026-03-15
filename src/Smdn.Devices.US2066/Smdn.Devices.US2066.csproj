@@ -9,10 +9,8 @@ SPDX-License-Identifier: MIT
     <VersionPrefix>0.9.1</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <PackageValidationBaselineVersion>0.9.0</PackageValidationBaselineVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' " Label="Required properties to generate API list">
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <IsAotCompatible>false</IsAotCompatible>
+    <NoWarn>CS1591;$(NoWarn)</NoWarn> <!-- CS1591: Missing XML comment for publicly visible type or member 'Type_or_Member' -->
   </PropertyGroup>
 
   <PropertyGroup Label="metadata">
@@ -22,6 +20,7 @@ This library supports OLED display module SO1602A, SO2002A, and other display mo
 ]]>
     </Description>
     <PackageTags>System.Device.Gpio,Iot.Device.Bindings,OLED display,US2066,SO1602A,SO2002A</PackageTags>
+    <CopyrightYear>2021</CopyrightYear>
   </PropertyGroup>
 
   <ItemGroup>
