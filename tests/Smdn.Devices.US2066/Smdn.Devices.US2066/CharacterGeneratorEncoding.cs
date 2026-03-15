@@ -3,19 +3,40 @@
 
 using System;
 using System.Text;
+
 using NUnit.Framework;
 
 namespace Smdn.Devices.US2066;
 
 [TestFixture]
 public class CharacterGeneratorEncodingTests {
-  [Test] public void GetChars() => Assert.Throws<NotSupportedException>(() => CharacterGeneratorEncoding.CGRomA.GetChars(Array.Empty<byte>()));
-  [Test] public void GetCharCount() => Assert.Throws<NotSupportedException>(() => CharacterGeneratorEncoding.CGRomA.GetCharCount(Array.Empty<byte>()));
-  [Test] public void GetMaxCharCount() => Assert.Throws<NotSupportedException>(() => CharacterGeneratorEncoding.CGRomA.GetMaxCharCount(0));
+  [Test]
+  public void GetChars()
+    => Assert.That(
+      () => CharacterGeneratorEncoding.CGRomA.GetChars(Array.Empty<byte>()),
+      Throws.TypeOf<NotSupportedException>()
+    );
+
+  [Test]
+  public void GetCharCount()
+    => Assert.That(
+      () => CharacterGeneratorEncoding.CGRomA.GetCharCount(Array.Empty<byte>()),
+      Throws.TypeOf<NotSupportedException>()
+    );
+
+  [Test]
+  public void GetMaxCharCount()
+    => Assert.That(
+      () => CharacterGeneratorEncoding.CGRomA.GetMaxCharCount(0),
+      Throws.TypeOf<NotSupportedException>()
+    );
 
   [Test]
   public void GetBytes_StringNull()
-    => Assert.Throws<ArgumentNullException>(() => CharacterGeneratorEncoding.CGRomA.GetBytes(chars: null));
+    => Assert.That(
+      () => CharacterGeneratorEncoding.CGRomA.GetBytes(chars: null!),
+      Throws.ArgumentNullException
+    );
 
   [Test]
   public void GetByteCount_ASCII()
@@ -25,9 +46,9 @@ public class CharacterGeneratorEncodingTests {
       CharacterGeneratorEncoding.CGRomB,
       CharacterGeneratorEncoding.CGRomC
     }) {
-      Assert.AreEqual(
-        26,
+      Assert.That(
         e.GetByteCount("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+        Is.EqualTo(26),
         e.EncodingName
       );
     }
@@ -41,9 +62,9 @@ public class CharacterGeneratorEncodingTests {
       CharacterGeneratorEncoding.CGRomB,
       CharacterGeneratorEncoding.CGRomC
     }) {
-      Assert.AreEqual(
-        new byte[] {0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4A, 0x4B, 0x4C, 0x4D, 0x4E, 0x4F, 0x50, 0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5A},
+      Assert.That(
         e.GetBytes("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+        Is.EqualTo(new byte[] { 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4A, 0x4B, 0x4C, 0x4D, 0x4E, 0x4F, 0x50, 0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5A }),
         e.EncodingName
       );
     }
@@ -59,9 +80,9 @@ public class CharacterGeneratorEncodingTests {
       CharacterGeneratorEncoding.CGRomB,
       CharacterGeneratorEncoding.CGRomC
     }) {
-      Assert.AreEqual(
-        expectedByteCount,
+      Assert.That(
         e.GetByteCount(input),
+        Is.EqualTo(expectedByteCount),
         e.EncodingName
       );
     }
@@ -77,9 +98,9 @@ public class CharacterGeneratorEncodingTests {
       CharacterGeneratorEncoding.CGRomB,
       CharacterGeneratorEncoding.CGRomC
     }) {
-      Assert.AreEqual(
-        Array.ConvertAll(expectedByteSequence.Split('-'), by => Convert.ToByte(by, 16)),
+      Assert.That(
         e.GetBytes(input),
+        Is.EqualTo(Array.ConvertAll(expectedByteSequence.Split('-'), by => Convert.ToByte(by, 16))).AsCollection,
         e.EncodingName
       );
     }
@@ -93,9 +114,9 @@ public class CharacterGeneratorEncodingTests {
   [TestCase("⩾")]
   public void GetByteCount_Collation(string input)
   {
-    Assert.AreEqual(
-      1,
-      CharacterGeneratorEncoding.CGRomC.GetByteCount(input)
+    Assert.That(
+      CharacterGeneratorEncoding.CGRomC.GetByteCount(input),
+      Is.EqualTo(1)
     );
   }
 
@@ -107,9 +128,9 @@ public class CharacterGeneratorEncodingTests {
   [TestCase("⩽", 0xFA)]
   public void GetBytes_Collation(string input, byte expectedCharacter)
   {
-    Assert.AreEqual(
-      new byte[] {expectedCharacter},
-      CharacterGeneratorEncoding.CGRomC.GetBytes(input)
+    Assert.That(
+      CharacterGeneratorEncoding.CGRomC.GetBytes(input),
+      Is.EqualTo(new byte[] { expectedCharacter }).AsCollection
     );
   }
 
@@ -128,9 +149,9 @@ public class CharacterGeneratorEncodingTests {
       new CharacterGeneratorRomBEncoding(enableCollation: enableCollation),
       new CharacterGeneratorRomCEncoding(enableCollation: enableCollation),
     }) {
-      Assert.AreEqual(
-        new byte[] {expectedCharacter},
+      Assert.That(
         e.GetBytes(input),
+        Is.EqualTo(new byte[] { expectedCharacter }).AsCollection,
         e.EncodingName
       );
     }
@@ -144,9 +165,9 @@ public class CharacterGeneratorEncodingTests {
       CharacterGeneratorEncoding.CGRomB,
       CharacterGeneratorEncoding.CGRomC
     }) {
-      Assert.AreEqual(
-        7,
+      Assert.That(
         e.GetByteCount("ABC日本語😫"),
+        Is.EqualTo(7),
         e.EncodingName
       );
     }
@@ -160,9 +181,9 @@ public class CharacterGeneratorEncodingTests {
       CharacterGeneratorEncoding.CGRomB,
       CharacterGeneratorEncoding.CGRomC
     }) {
-      Assert.AreEqual(
-        new byte[] { 0x41, 0x42, 0x43, 0x20, 0x20, 0x20, 0x20 },
+      Assert.That(
         e.GetBytes("ABC日本語😫"),
+        Is.EqualTo(new byte[] { 0x41, 0x42, 0x43, 0x20, 0x20, 0x20, 0x20 }).AsCollection,
         e.EncodingName
       );
     }
@@ -176,9 +197,9 @@ public class CharacterGeneratorEncodingTests {
       new CharacterGeneratorRomBEncoding(defaultReplacementString: "!"),
       new CharacterGeneratorRomCEncoding(defaultReplacementString: "!"),
     }) {
-      Assert.AreEqual(
-        7,
+      Assert.That(
         e.GetByteCount("ABC日本語😫"),
+        Is.EqualTo(7),
         e.EncodingName
       );
     }
@@ -192,9 +213,9 @@ public class CharacterGeneratorEncodingTests {
       new CharacterGeneratorRomBEncoding(defaultReplacementString: "!"),
       new CharacterGeneratorRomCEncoding(defaultReplacementString: "!"),
     }) {
-      Assert.AreEqual(
-        new byte[] { 0x41, 0x42, 0x43, 0x21, 0x21, 0x21, 0x21},
+      Assert.That(
         e.GetBytes("ABC日本語😫"),
+        Is.EqualTo(new byte[] { 0x41, 0x42, 0x43, 0x21, 0x21, 0x21, 0x21 }).AsCollection,
         e.EncodingName
       );
     }
@@ -208,9 +229,9 @@ public class CharacterGeneratorEncodingTests {
       new CharacterGeneratorRomBEncoding(defaultReplacementString: string.Empty),
       new CharacterGeneratorRomCEncoding(defaultReplacementString: string.Empty),
     }) {
-      Assert.AreEqual(
-        3,
+      Assert.That(
         e.GetByteCount("ABC日本語😫"),
+        Is.EqualTo(3),
         e.EncodingName
       );
     }
@@ -224,9 +245,9 @@ public class CharacterGeneratorEncodingTests {
       new CharacterGeneratorRomBEncoding(defaultReplacementString: string.Empty),
       new CharacterGeneratorRomCEncoding(defaultReplacementString: string.Empty),
     }) {
-      Assert.AreEqual(
-        new byte[] { 0x41, 0x42, 0x43},
+      Assert.That(
         e.GetBytes("ABC日本語😫"),
+        Is.EqualTo(new byte[] { 0x41, 0x42, 0x43 }).AsCollection,
         e.EncodingName
       );
     }
@@ -242,11 +263,14 @@ public class CharacterGeneratorEncodingTests {
       new CharacterGeneratorRomBEncoding(new EncoderExceptionFallback()),
       new CharacterGeneratorRomCEncoding(new EncoderExceptionFallback()),
     }) {
-      var ex = Assert.Throws<EncoderFallbackException>(
-        () => e.GetByteCount("ABC日本語😫")
+      Assert.That(
+        () => e.GetByteCount("ABC日本語😫"),
+        Throws
+          .TypeOf<EncoderFallbackException>()
+          .With
+          .Property(nameof(EncoderFallbackException.CharUnknown))
+          .EqualTo('日')
       );
-
-      Assert.AreEqual('日', ex.CharUnknown);
     }
   }
 
@@ -258,11 +282,14 @@ public class CharacterGeneratorEncodingTests {
       new CharacterGeneratorRomBEncoding(new EncoderExceptionFallback()),
       new CharacterGeneratorRomCEncoding(new EncoderExceptionFallback()),
     }) {
-      var ex = Assert.Throws<EncoderFallbackException>(
-        () => e.GetBytes("ABC日本語😫")
+      Assert.That(
+        () => e.GetBytes("ABC日本語😫"),
+        Throws
+          .TypeOf<EncoderFallbackException>()
+          .With
+          .Property(nameof(EncoderFallbackException.CharUnknown))
+          .EqualTo('日')
       );
-
-      Assert.AreEqual('日', ex.CharUnknown);
     }
   }
 
@@ -274,9 +301,9 @@ public class CharacterGeneratorEncodingTests {
       new CharacterGeneratorRomBEncoding(new EncoderReplacementFallback("!")),
       new CharacterGeneratorRomCEncoding(new EncoderReplacementFallback("!")),
     }) {
-      Assert.AreEqual(
-        8, // EncoderReplacementFallback replaces "😫" -> "!!"
+      Assert.That(
         e.GetByteCount("ABC日本語😫"),
+        Is.EqualTo(8), // EncoderReplacementFallback replaces "😫" -> "!!"
         e.EncodingName
       );
     }
@@ -290,9 +317,9 @@ public class CharacterGeneratorEncodingTests {
       new CharacterGeneratorRomBEncoding(new EncoderReplacementFallback("!")),
       new CharacterGeneratorRomCEncoding(new EncoderReplacementFallback("!")),
     }) {
-      Assert.AreEqual(
-        new byte[] { 0x41, 0x42, 0x43, 0x21, 0x21, 0x21, 0x21, 0x21}, // EncoderReplacementFallback replaces "😫" -> "!!"
+      Assert.That(
         e.GetBytes("ABC日本語😫"),
+        Is.EqualTo(new byte[] { 0x41, 0x42, 0x43, 0x21, 0x21, 0x21, 0x21, 0x21 }), // EncoderReplacementFallback replaces "😫" -> "!!"
         e.EncodingName
       );
     }
