@@ -10,18 +10,21 @@ using System.Threading.Tasks;
 using System.Management;
 
 #if MCP2221
-using Smdn.Devices.MCP2221;
-using Smdn.Devices.MCP2221.GpioAdapter;
+using Microsoft.Extensions.DependencyInjection;
+using Smdn.Devices.Mcp2221A;
+using Smdn.IO.UsbHid.DependencyInjection;
 #endif
 using Smdn.Devices.US2066;
 
 #if MCP2221
-using var mcp2221 = MCP2221.Open();
+var services = new ServiceCollection();
 
+services.AddHidSharpUsbHid();
+
+using var serviceProvider = services.BuildServiceProvider();
+using var mcp2221a = Mcp2221A.Create(serviceProvider);
 using var display = SO1602A.Create(
-  new MCP2221I2cDevice(mcp2221.I2C, SO1602A.DefaultI2CAddress) {
-    BusSpeed = I2CBusSpeed.FastMode
-  }
+  mcp2221a.I2c.CreateDevice(SO1602A.DefaultI2CAddress).WithFastMode()
 );
 #else
 using var display = SO1602A.Create(SO1602A.DefaultI2CAddress);

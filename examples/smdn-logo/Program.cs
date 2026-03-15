@@ -3,19 +3,19 @@
 
 using System;
 
-using Smdn.Devices.MCP2221;
-using Smdn.Devices.MCP2221.GpioAdapter;
-using Smdn.Devices.US2066;
+using Microsoft.Extensions.DependencyInjection;
 
-static SO1602A CreateDisplay()
+using Smdn.Devices.Mcp2221A;
+using Smdn.Devices.US2066;
+using Smdn.IO.UsbHid.DependencyInjection;
+
+static SO1602A CreateDisplay(IServiceProvider serviceProvider)
 {
   try {
-    var mcp2221 = MCP2221.Open();
+    var mcp2221a = Mcp2221A.Create(serviceProvider);
 
     return SO1602A.Create(
-      new MCP2221I2cDevice(mcp2221.I2C, SO1602A.DefaultI2CAddress) {
-        BusSpeed = I2CBusSpeed.FastMode
-      }
+      mcp2221a.I2c.CreateDevice(SO1602A.DefaultI2CAddress, shouldDisposeMcp2221A: true).WithFastMode()
     );
   }
   catch {
@@ -28,7 +28,13 @@ static SO1602A CreateDisplay()
   }
 }
 
-using var display = CreateDisplay();
+var services = new ServiceCollection();
+
+services.AddHidSharpUsbHid();
+
+using var serviceProvider = services.BuildServiceProvider();
+
+using var display = CreateDisplay(serviceProvider);
 
 display.BlinkingCursorVisible = false;
 display.UnderlineCursorVisible = false;

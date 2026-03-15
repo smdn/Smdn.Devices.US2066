@@ -10,4 +10,4 @@
 - Example of usage
   - [clock-ja](./clock-ja/): Japanese date and time display using Kanji characters.
   - [cpustats](./cpustats/): CPU statistics display. Temperature ℃ and usage %
-  - [MCP2221](./MCP2221/): The example of combining package [Smdn.Devices.MCP2221.GpioAdapter](https://github.com/smdn/Smdn.Devices.MCP2221) and controlling an OLED display via a USB connection on a normal PC.
+  - [MCP2221](./MCP2221/): The example of combining package [Smdn.Devices.Mcp2221A](https://github.com/smdn/Smdn.Devices.Mcp2221A) and controlling an OLED display via a USB connection on a normal PC.

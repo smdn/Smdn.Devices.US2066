@@ -3,7 +3,7 @@ The IC MCP2221/MCP2221A is an interface converter that performs protocol convers
 
 This IC can send I<sup>2</sup>C commands via the USB HID interface, so you can operate I<sup>2</sup>C devices from generic PCs. There is no need to bring any special devices such as Arduino or Raspberry Pi, and also no need to install any drivers.
 
-The package [Smdn.Devices.MCP2221.GpioAdapter](https://github.com/smdn/Smdn.Devices.MCP2221) can control this IC and can be used with `Smdn.Devices.US2066`.
+The package [Smdn.Devices.Mcp2221A](https://github.com/smdn/Smdn.Devices.Mcp2221A) can control this IC and can be used with `Smdn.Devices.US2066`.
 
 This example shows operating the OLED display module SO1602A using MCP2221A. You can run this example with following instruction.
 
@@ -13,7 +13,7 @@ This example shows operating the OLED display module SO1602A using MCP2221A. You
 Required devices and parts are as follows:
 
 - PC with USB ports
-  - Windows, Linux, or etc., where [Smdn.Devices.MCP2221.GpioAdapter](https://github.com/smdn/Smdn.Devices.MCP2221) can work.
+  - Windows, Linux, or etc., where [Smdn.Devices.Mcp2221A](https://github.com/smdn/Smdn.Devices.Mcp2221A) can work.
 - USB breakout board or breakout cable
 - MCP2221/MCP2221A and
   - 0.22μF capacitor × 1

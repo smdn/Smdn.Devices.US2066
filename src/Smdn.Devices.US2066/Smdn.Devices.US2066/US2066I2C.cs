@@ -27,7 +27,7 @@ internal sealed class US2066I2C : US2066 {
   public US2066I2C(I2cDevice i2cDevice)
   {
     this.i2cDevice = i2cDevice ?? throw new ArgumentNullException(nameof(i2cDevice));
-    this.isI2CDeviceMCP2221 = i2cDevice.GetType().FullName.Equals("Smdn.Devices.MCP2221.GpioAdapter.MCP2221I2cDevice", StringComparison.Ordinal);
+    this.isI2CDeviceMCP2221 = i2cDevice.GetType().FullName.StartsWith("Smdn.Devices.Mcp2221A.", StringComparison.Ordinal);
   }
 
   protected override void Dispose(bool disposing)

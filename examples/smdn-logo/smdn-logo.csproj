@@ -1,4 +1,4 @@
-<!--
+﻿<!--
 SPDX-FileCopyrightText: 2021 smdn <smdn@smdn.jp>
 SPDX-License-Identifier: MIT
 -->
@@ -8,6 +8,7 @@ SPDX-License-Identifier: MIT
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Smdn.Devices.MCP2221.GpioAdapter" Version="[0.9.*,1.0.0)" />
+    <PackageReference Include="Smdn.Devices.Mcp2221A" Version="1.0.0-preview1" />
+    <PackageReference Include="Smdn.IO.UsbHid.Providers.HidSharp" Version="1.0.0-preview4" />
   </ItemGroup>
 </Project>
