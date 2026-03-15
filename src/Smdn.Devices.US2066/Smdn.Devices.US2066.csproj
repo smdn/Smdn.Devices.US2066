@@ -27,4 +27,10 @@ This library supports OLED display module SO1602A, SO2002A, and other display mo
     <PackageReference Include="System.Device.Gpio" Version="1.4.0" />
     <PackageReference Include="Iot.Device.Bindings" Version="1.4.0" />
   </ItemGroup>
+
+  <!-- Updates the version of packages indirectly referenced by Iot.Device.Bindings. -->
+  <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="2.1.11" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
 </Project>
