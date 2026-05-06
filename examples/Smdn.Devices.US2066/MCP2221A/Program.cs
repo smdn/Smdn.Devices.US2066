@@ -14,9 +14,9 @@ var services = new ServiceCollection();
 services.AddHidSharpUsbHid();
 
 using var serviceProvider = services.BuildServiceProvider();
-using var mcp2221a = Mcp2221A.Create(serviceProvider);
+using var mcp2221a = Mcp2221AController.Create(serviceProvider);
 using var display = SO1602A.Create(
-  mcp2221a.I2c.CreateDevice(SO1602A.DefaultI2CAddress).WithFastMode()
+  mcp2221a.I2cBus.CreateDevice(SO1602A.DefaultI2CAddress).WithFastMode()
 );
 
 display.Write("Hello, world!");

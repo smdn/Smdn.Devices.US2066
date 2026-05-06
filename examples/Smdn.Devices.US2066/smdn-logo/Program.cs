@@ -12,10 +12,10 @@ using Smdn.IO.UsbHid.DependencyInjection;
 static SO1602A CreateDisplay(IServiceProvider serviceProvider)
 {
   try {
-    var mcp2221a = Mcp2221A.Create(serviceProvider);
+    var mcp2221a = Mcp2221AController.Create(serviceProvider);
 
     return SO1602A.Create(
-      mcp2221a.I2c.CreateDevice(SO1602A.DefaultI2CAddress, shouldDisposeMcp2221A: true).WithFastMode()
+      mcp2221a.I2cBus.CreateDevice(SO1602A.DefaultI2CAddress, shouldDisposeMcp2221AController: true).WithFastMode()
     );
   }
   catch {
