@@ -55,7 +55,7 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
   internal int DDRamAddressWidth { get; private set; }
 
   public int NumberOfUserDefinedCharactersSupported {
-    get => cgramUsage switch {
+    get => CGRamUsage switch {
       CGRamUsage.OPR_00b => 8,
       CGRamUsage.OPR_01b => 8,
       CGRamUsage.OPR_10b => 6,
@@ -74,40 +74,36 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
 
   private readonly Rune[] cgramCharacterCodePoints = new Rune[MaxNumberOfCGRamCharactersSupported];
 
-  private CharacterGeneratorEncoding characterGenerator;
-
   public CharacterGeneratorEncoding CharacterGenerator {
-    get => characterGenerator;
+    get;
     set {
-      if (value == characterGenerator)
+      if (value == field)
         return; // do nothing
       if (value is null)
         throw new ArgumentNullException(nameof(CharacterGenerator), "must be non-null value");
 
-      characterGenerator?.DetachCGRam();
-      characterGenerator = value.Clone(this);
+      field?.DetachCGRam();
+      field = value.Clone(this);
 
-      SendFunctionSelectionBSequence(cgramUsage, characterGenerator.CGRom);
+      SendFunctionSelectionBSequence(CGRamUsage, field.CGRom);
       Clear();
     }
   }
 
-  private CGRamUsage cgramUsage = CGRamUsage.NoUserDefinedCharacters;
-
   public CGRamUsage CGRamUsage {
-    get => cgramUsage;
+    get;
     set {
-      if (value == cgramUsage)
+      if (value == field)
         return; // do nothing
       if (value is not (>= CGRamUsage.OPR_00b and <= CGRamUsage.OPR_11b))
         throw new ArgumentException($"invalid value ({value})", nameof(CGRamUsage));
 
-      cgramUsage = value;
+      field = value;
 
-      SendFunctionSelectionBSequence(cgramUsage, characterGenerator.CGRom);
+      SendFunctionSelectionBSequence(field, CharacterGenerator.CGRom);
       Clear();
     }
-  }
+  } = CGRamUsage.NoUserDefinedCharacters;
 
   private DisplayControl displayControl;
 
@@ -332,7 +328,7 @@ public abstract partial class US2066 : LcdInterface, ICGRam {
 
     Span<byte> dataSequence = stackalloc byte[maxLengthToSend];
 
-    var len = characterGenerator.GetBytes(values, dataSequence);
+    var len = CharacterGenerator.GetBytes(values, dataSequence);
 
     SendDataAwaitExecutionTime(dataSequence.Slice(0, len));
 
