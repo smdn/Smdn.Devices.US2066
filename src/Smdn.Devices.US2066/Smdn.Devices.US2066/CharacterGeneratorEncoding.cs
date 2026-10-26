@@ -114,10 +114,10 @@ public abstract class CharacterGeneratorEncoding : Encoding {
       var lengthOfCountedChars = 0;
       var (rune, isRune) =
         2 <= chars.Length && char.IsSurrogatePair(chars[0], chars[1])
-          ? (rune: new Rune(chars[0], chars[1]), isRune: true)
+          ? (Rune: new Rune(chars[0], chars[1]), IsRune: true)
           : char.IsSurrogate(chars[0])
-            ? (rune: default(Rune), isRune: false)
-            : (rune: new Rune(chars[0]), isRune: true);
+            ? (Rune: default, IsRune: false)
+            : (Rune: new Rune(chars[0]), IsRune: true);
 
       // 1: CGRAM
       if (cgram is not null && isRune && cgram.GetByte(rune, out var _)) {
@@ -192,10 +192,10 @@ public abstract class CharacterGeneratorEncoding : Encoding {
       var lengthOfConvertedBytes = 0;
       var (rune, isRune) =
         2 <= chars.Length && char.IsSurrogatePair(chars[0], chars[1])
-          ? (rune: new Rune(chars[0], chars[1]), isRune: true)
+          ? (Rune: new Rune(chars[0], chars[1]), IsRune: true)
           : char.IsSurrogate(chars[0])
-            ? (rune: default(Rune), isRune: false)
-            : (rune: new Rune(chars[0]), isRune: true);
+            ? (Rune: default, IsRune: false)
+            : (Rune: new Rune(chars[0]), IsRune: true);
 
       // 1: CGRAM
       if (cgram is not null && isRune && cgram.GetByte(rune, out var cgramCharacterByte)) {
