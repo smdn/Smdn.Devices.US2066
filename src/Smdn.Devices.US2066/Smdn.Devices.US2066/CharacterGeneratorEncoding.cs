@@ -130,7 +130,7 @@ public abstract class CharacterGeneratorEncoding : Encoding {
       if (
         isRune &&
         rune.IsBmp &&
-        0 <= Array.BinarySearch(characterMap, ((char)rune.Value, default(byte)), CGRomCharacters.CharacterMapEntryComparer)
+        0 <= Array.BinarySearch(characterMap, ((char)rune.Value, default), CGRomCharacters.CharacterMapEntryComparer)
       ) {
         lengthOfCountedChars = 1; // rune.Utf16SequenceLength = 1
         byteCount++;
@@ -207,7 +207,7 @@ public abstract class CharacterGeneratorEncoding : Encoding {
 
       // 2: CGROM
       if (isRune && rune.IsBmp) {
-        var indexOfCharacterMap = Array.BinarySearch(characterMap, ((char)rune.Value, default(byte)), CGRomCharacters.CharacterMapEntryComparer);
+        var indexOfCharacterMap = Array.BinarySearch(characterMap, ((char)rune.Value, default), CGRomCharacters.CharacterMapEntryComparer);
 
         if (0 <= indexOfCharacterMap) {
           lengthOfConvertedChars = 1; // rune.Utf16SequenceLength = 1
