@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -94,7 +95,7 @@ public abstract class US2066DisplayModuleBase : ICharacterLcd {
   }
 
 #pragma warning disable CA1033
-  SixLabors.ImageSharp.Size ICharacterLcd.Size => new(NumberOfCharsPerLine, NumberOfLines);
+  Size ICharacterLcd.Size => new(NumberOfCharsPerLine, NumberOfLines);
 #pragma warning restore CA1033
 
   public int NumberOfCustomCharactersSupported => OLEDInterface.NumberOfUserDefinedCharactersSupported;
@@ -139,6 +140,13 @@ public abstract class US2066DisplayModuleBase : ICharacterLcd {
 
   public void Home()
     => OLEDInterface.Home();
+
+  public void CreateCustomCharacter(int location, byte[] characterMap)
+    => CreateCustomCharacter(
+      (CGRamCharacter)location,
+      default(Rune),
+      (characterMap ?? throw new ArgumentNullException(nameof(characterMap))).AsSpan()
+    );
 
   public void CreateCustomCharacter(int location, ReadOnlySpan<byte> characterMap)
     => CreateCustomCharacter((CGRamCharacter)location, default(Rune), characterMap);
@@ -186,6 +194,9 @@ public abstract class US2066DisplayModuleBase : ICharacterLcd {
     Write(text);
     WriteLine();
   }
+
+  public void Write(char[] text)
+    => Write((text ?? throw new ArgumentNullException(nameof(text))).AsSpan());
 
   public void Write(ReadOnlySpan<char> text)
     => OLEDInterface.SendData(text);
